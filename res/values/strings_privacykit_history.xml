@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the History tab (activity log).
+
+     RECONSTRUCTED 2026-08-19. Every value below is byte-exact from the r49
+     Settings.apk resource table. Which res/values file this block
+     originally lived in is NOT recoverable: aapt2 sorts string resources
+     alphabetically, so the shipped public.xml carries no file-partition
+     information. res/values/*.xml all merge, so the split is cosmetic; the
+     names follow the strings_privacykit_<feature>.xml convention proven by
+     the surviving _ai / _controls / _hub / _identifiers / _randomise files.
+-->
+<resources>
+    <string name="privacykit_history_action_control_set">Access control changed</string>
+    <string name="privacykit_history_action_profile_activated">Profile activated</string>
+    <string name="privacykit_history_action_profile_cleared">All identifier rules cleared</string>
+    <string name="privacykit_history_action_profile_created">Profile created</string>
+    <string name="privacykit_history_action_profile_deleted">Profile deleted</string>
+    <string name="privacykit_history_action_rule_cleared">Identifier rule cleared</string>
+    <string name="privacykit_history_action_rule_set">Identifier rule set</string>
+    <string name="privacykit_history_empty_description">Changes you make to profiles, identifier rules and access controls will show up here.</string>
+    <string name="privacykit_history_today">Today</string>
+    <string name="privacykit_history_yesterday">Yesterday</string>
+    <string name="privacykit_no_history">No activity yet.</string>
+</resources>

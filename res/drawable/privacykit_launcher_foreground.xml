@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PrivacyKit launcher icon, foreground layer.
+
+     Ported verbatim from the PrivacyKit app's own icon:
+       github.com/Mohithash/Privacy_Kit
+       app/src/main/res/drawable/ic_launcher_foreground.xml
+
+     Upstream's note: "A domino/masquerade-style mask: the app's whole purpose
+     is letting an app see a different 'face' per profile, so an identity mask
+     reads better than a generic Android/privacy glyph."
+
+     Solid white on transparent, so it doubles as the <monochrome> layer for
+     themed icons. Artwork spans x 27..81 / y 40..68, well inside the 72dp
+     adaptive-icon safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="
+            M27,54
+            C27,54 30,44 37,42
+            C44,40 50,44 54,47
+            C58,44 64,40 71,42
+            C78,44 81,54 81,54
+            C81,54 78,64 71,66
+            C64,68 58,64 54,61
+            C50,64 44,68 37,66
+            C30,64 27,54 27,54
+            Z
+            M48,53 A8,8 0 1,0 32,53 A8,8 0 1,0 48,53 Z
+            M76,53 A8,8 0 1,0 60,53 A8,8 0 1,0 76,53 Z" />
+</vector>

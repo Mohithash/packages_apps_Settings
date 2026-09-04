@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="privacykit_category_obscura"
+        android:title="@string/privacykit_category_obscura">
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_hide_app"
+            android:title="@string/privacykit_hide_app_title"
+            android:summary="@string/privacykit_hide_app_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_hide_dev_status"
+            android:title="@string/privacykit_hide_dev_status_title"
+            android:summary="@string/privacykit_hide_dev_status_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_hide_launcher"
+            android:title="@string/privacykit_hide_launcher_title"
+            android:summary="@string/privacykit_hide_launcher_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="privacykit_category_restrict"
+        android:title="@string/privacykit_category_restrict">
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_restrict_internet"
+            android:title="@string/privacykit_restrict_internet_title"
+            android:summary="@string/privacykit_restrict_internet_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_restrict_storage"
+            android:title="@string/privacykit_restrict_storage_title"
+            android:summary="@string/privacykit_restrict_storage_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_force_data_isolation"
+            android:title="@string/privacykit_force_data_isolation_title"
+            android:summary="@string/privacykit_force_data_isolation_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="privacykit_category_identity"
+        android:title="@string/privacykit_category_identity">
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_android_id"
+            android:title="@string/privacykit_spoof_android_id_title"
+            android:summary="@string/privacykit_spoof_android_id_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_serial"
+            android:title="@string/privacykit_spoof_serial_title"
+            android:summary="@string/privacykit_spoof_serial_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <ListPreference
+            android:key="privacykit_device_profile"
+            android:title="@string/privacykit_device_profile_title"
+            android:summary="@string/privacykit_device_profile_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_build_identity"
+            android:title="@string/privacykit_spoof_build_identity_title"
+            android:summary="@string/privacykit_spoof_build_identity_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_imei"
+            android:title="@string/privacykit_spoof_imei_title"
+            android:summary="@string/privacykit_spoof_imei_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_imsi"
+            android:title="@string/privacykit_spoof_imsi_title"
+            android:summary="@string/privacykit_spoof_imsi_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_iccid"
+            android:title="@string/privacykit_spoof_iccid_title"
+            android:summary="@string/privacykit_spoof_iccid_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+        <SwitchPreferenceCompat
+            android:key="privacykit_spoof_phone_number"
+            android:title="@string/privacykit_spoof_phone_number_title"
+            android:summary="@string/privacykit_spoof_phone_number_summary"
+            android:persistent="false"
+            settings:searchable="false" />
+
+    </PreferenceCategory>
+
+    <com.android.settingslib.widget.FooterPreference
+        android:title="@string/privacykit_footer_text"
+        android:selectable="false"
+        settings:searchable="false" />
+
+</PreferenceScreen>

@@ -188,6 +188,7 @@ import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.privacy.PrivacyControlsFragment;
 import com.android.settings.privacy.PrivacyDashboardFragment;
+import com.android.settings.privacykit.PrivacyKitPackageListFragment;
 import com.android.settings.privatespace.delete.PrivateSpaceDeleteFragment;
 import com.android.settings.privatespace.delete.PrivateSpaceDeletionProgressFragment;
 import com.android.settings.privatespace.onelock.PrivateSpaceBiometricSettings;
@@ -282,6 +283,7 @@ public class SettingsGateway {
             WifiScanningFragment.class.getName(),
             PrivacyDashboardFragment.class.getName(),
             PrivacyControlsFragment.class.getName(),
+            PrivacyKitPackageListFragment.class.getName(),
             LocationServices.class.getName(),
             SecuritySettings.class.getName(),
             SecurityAdvancedSettings.class.getName(),

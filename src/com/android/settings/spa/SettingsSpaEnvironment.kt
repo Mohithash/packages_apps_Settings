@@ -56,6 +56,7 @@ import com.android.settings.spa.core.instrumentation.SpaLogMetricsProvider
 import com.android.settings.spa.development.UsageStatsPageProvider
 import com.android.settings.spa.development.compat.PlatformCompatAppListPageProvider
 import com.android.settings.spa.home.HomePageProvider
+import com.android.settings.privacykit.PrivacyKitHomePageProvider
 import com.android.settings.spa.network.NetworkAndInternetPageProvider
 import com.android.settings.spa.network.NetworkCellularGroupProvider
 import com.android.settings.spa.network.SimOnboardingPageProvider
@@ -108,6 +109,7 @@ open class SettingsSpaEnvironment(context: Context) : SpaEnvironment(context) {
     open fun settingsPageProviders() =
         listOf(
                 HomePageProvider,
+                PrivacyKitHomePageProvider,
                 AppsMainPageProvider,
                 AllAppListPageProvider,
                 AppInfoSettingsProvider,

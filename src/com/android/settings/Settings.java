@@ -329,6 +329,8 @@ public class Settings extends SettingsActivity {
         }
     }
     public static class PrivacyControlsActivity extends SettingsActivity { /* empty */ }
+    /* PrivacyKit-Native: alias activity behind the standalone launcher icon. */
+    public static class PrivacyKitLauncherActivity extends SettingsActivity { /* empty */ }
     public static class PrivacySettingsActivity extends SettingsActivity { /* empty */ }
     public static class FactoryResetActivity extends SettingsActivity {
         @Override

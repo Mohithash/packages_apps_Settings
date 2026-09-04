@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Separate from strings.xml on purpose (res/values/*.xml is merged
+     automatically) to avoid touching the shared file while other agents
+     are concurrently editing it.
+-->
+<resources>
+    <!-- Settings tab: AI providers -->
+    <string name="privacykit_ai_providers_title">AI providers</string>
+    <string name="privacykit_ai_providers_summary">Optional. Powers \'Generate new profile\' and \'Explain my fingerprint\'. Pick a provider and enter its API key; keys are stored only on this device, and each provider keeps its own key.</string>
+    <string name="privacykit_ai_provider_openai">OpenAI-compatible</string>
+    <string name="privacykit_ai_provider_openai_summary">OpenAI, or any server exposing /chat/completions</string>
+    <string name="privacykit_ai_provider_deepseek">DeepSeek</string>
+    <string name="privacykit_ai_provider_deepseek_summary">api.deepseek.com, same chat-completions format</string>
+    <string name="privacykit_ai_provider_gemini">Google Gemini</string>
+    <string name="privacykit_ai_provider_gemini_summary">Google AI generateContent API</string>
+    <string name="privacykit_ai_gemini_note">Gemini uses a different request format, so it is a separate code path. It has not yet been verified against a live endpoint - if requests fail, check the model name (for example gemini-2.0-flash) and the base URL.</string>
+    <string name="privacykit_ai_provider_choose">Provider</string>
+    <string name="privacykit_ai_providers_row_none">None configured</string>
+    <string name="privacykit_ai_providers_row_ready">%1$s · key saved</string>
+    <string name="privacykit_ai_providers_row_needs_url">%1$s · base URL needed</string>
+    <string name="privacykit_ai_clear_key">Remove key</string>
+    <string name="privacykit_ai_key_cleared">API key removed</string>
+
+    <!-- Settings tab: imported device profiles -->
+    <string name="privacykit_templates_title">Device profiles</string>
+    <string name="privacykit_templates_summary">Device identity templates offered by \'Generate new profile\'. Import a JSON file to add your own alongside the built-in ones.</string>
+    <string name="privacykit_templates_count">%1$d built-in, %2$d imported</string>
+    <string name="privacykit_templates_import">Import device profiles</string>
+    <string name="privacykit_templates_import_summary">Add device identities from a JSON file</string>
+    <string name="privacykit_templates_export">Export device profiles</string>
+    <string name="privacykit_templates_export_summary">Save every device identity to a JSON file you can edit and re-import</string>
+    <string name="privacykit_templates_remove">Remove imported device profiles</string>
+    <string name="privacykit_templates_remove_title">Remove imported device profiles?</string>
+    <string name="privacykit_templates_remove_message">This deletes every device profile you imported. The built-in ones stay, and profiles already applied to an app are not changed.</string>
+    <string name="privacykit_templates_remove_confirm">Remove</string>
+    <string name="privacykit_templates_removed">Imported device profiles removed.</string>
+    <string name="privacykit_templates_imported">Imported %1$d device profile(s).</string>
+    <string name="privacykit_templates_imported_skipped">Imported %1$d device profile(s). Skipped %2$d invalid or already-present entries.</string>
+    <string name="privacykit_templates_import_failed">Import failed: %1$s</string>
+    <string name="privacykit_templates_exported">Exported %1$d device profile(s).</string>
+    <string name="privacykit_templates_export_failed">Export failed: %1$s</string>
+
+    <!-- Settings tab: About - authorship credit -->
+    <string name="privacykit_about_author">Authored by Sal</string>
+    <string name="privacykit_about_author_github">github.com/mohithash</string>
+    <string name="privacykit_about_author_url" translatable="false">https://github.com/mohithash</string>
+
+    <!-- AppFunctions (on-device agent) surface: PrivacyKitAppFunctionService -->
+    <string name="privacykit_appfn_service_label">PrivacyKit assistant actions</string>
+    <!-- Shown when the PrivacyKit system service cannot be reached at all. -->
+    <string name="privacykit_appfn_error_unavailable">PrivacyKit is not available on this device.</string>
+    <!-- A PrivacyKit call failed (dead service, remote exception). -->
+    <string name="privacykit_appfn_error_privacykit_failed">PrivacyKit could not complete that request.</string>
+    <!-- Catch-all for an unexpected internal failure. -->
+    <string name="privacykit_appfn_error_internal">PrivacyKit could not complete that request because of an internal error.</string>
+    <!-- %1$s is the requested function id. -->
+    <string name="privacykit_appfn_error_unknown_function">PrivacyKit does not provide a function called %1$s.</string>
+    <!-- The agent gate is off. -->
+    <string name="privacykit_appfn_error_gate_off">Changing PrivacyKit settings from an assistant is turned off. Turn on assistant and adb control in Settings, under PrivacyKit, first.</string>
+    <!-- The agent gate could not be read, so the change is refused. -->
+    <string name="privacykit_appfn_error_gate_unreadable">PrivacyKit could not confirm that assistant control is allowed, so the change was refused.</string>
+    <!-- Mutating functions are refused while the device is locked. -->
+    <string name="privacykit_appfn_error_device_locked">Unlock the device before changing PrivacyKit settings.</string>
+    <string name="privacykit_appfn_error_missing_package">A package name is required.</string>
+    <!-- %1$s is the package name that was asked for. -->
+    <string name="privacykit_appfn_error_unknown_package">%1$s is not installed.</string>
+    <!-- %1$s is the package name. -->
+    <string name="privacykit_appfn_error_not_managed">%1$s is not managed by PrivacyKit yet, so it has no profile to switch to.</string>
+    <string name="privacykit_appfn_error_missing_profile">A profile id is required.</string>
+    <!-- %1$s is the profile id, %2$s the package name. -->
+    <string name="privacykit_appfn_error_unknown_profile">%1$s is not a profile of %2$s.</string>
+    <string name="privacykit_appfn_error_missing_key">An identifier key is required.</string>
+    <!-- %1$s is the identifier key that was asked for. -->
+    <string name="privacykit_appfn_error_unknown_key">%1$s is not a PrivacyKit identifier.</string>
+    <string name="privacykit_appfn_error_missing_rule_type">A rule type is required.</string>
+    <!-- %1$s is the rule type that was asked for. -->
+    <string name="privacykit_appfn_error_unknown_rule_type">%1$s is not a PrivacyKit rule type.</string>
+    <!-- %1$s is the requested rule type, %2$s the identifier key, %3$s the rule types that do work for it. -->
+    <string name="privacykit_appfn_error_rule_type_unsupported">PrivacyKit does not apply the %1$s rule to %2$s. Supported rule types: %3$s.</string>
+    <string name="privacykit_appfn_error_missing_value">A value is required for a custom rule.</string>
+    <string name="privacykit_ai_api_key">API key</string>
+    <string name="privacykit_ai_endpoint">API base URL</string>
+    <string name="privacykit_ai_key_missing_hint">No API key saved yet.</string>
+    <string name="privacykit_ai_key_saved_hint">An API key is already saved. Leave this blank to keep it.</string>
+    <string name="privacykit_ai_model">Model</string>
+    <string name="privacykit_ai_saved">Saved</string>
+</resources>

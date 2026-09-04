@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RECONSTRUCTED 2026-08-19, after the build box that held the original commits was
+     purged. Verified semantically identical to the vector resource extracted from the
+     r49 build Settings.apk with apktool (same paths, same colours, same viewport);
+     comments and formatting come from the transcript snapshot. -->
+<!-- PrivacyKit launcher icon (Settings$PrivacyKitLauncherActivity).
+
+     BestROM shared "dotted-b" brand mark, reproduced from the ROM's real mark
+     (github.com/Mohithash/bestrom-peridot-source, branch best-rom-branding-mark,
+     res/drawable/best_rom_mark_compact.xml) - the same 4-dot stem + bowl
+     topology, rebuilt at the 108dp adaptive-icon scale and centred inside the
+     66dp safe zone (all art within radius ~32 of centre).
+
+     PrivacyKit-distinct accent: a thin, translucent-white SHIELD outline framing
+     the "b" (privacy / protection). Freezer shares the identical "b" but with a
+     snowflake accent on an ice-blue field, so the two apps are NOT identical on
+     the launcher.
+
+     Self-contained so only this file changes: <background> reuses the existing
+     dark-navy privacykit_launcher_background (kept as-is) so the themeable
+     ?attr/colorAccent "b" always has contrast; <foreground> / <monochrome> nest
+     the mark vector directly. <monochrome> repeats it in solid white for themed
+     ("Themed icons") launchers to tint. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/privacykit_launcher_background" />
+    <foreground>
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="108dp"
+            android:height="108dp"
+            android:viewportWidth="108"
+            android:viewportHeight="108">
+            <path
+                android:fillColor="#00000000"
+                android:strokeColor="#5AFFFFFF"
+                android:strokeWidth="2.5"
+                android:pathData="M54,24 C63,24 72,28 76,34 C77,42 76,52 72,61 C68,70 61,78 54,84 C47,78 40,70 36,61 C32,52 31,42 32,34 C36,28 45,24 54,24 Z" />
+            <path
+                android:fillColor="?android:attr/colorAccent"
+                android:pathData="M40,28a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,56a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M54,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M68,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M54,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M68,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12" />
+        </vector>
+    </foreground>
+    <monochrome>
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="108dp"
+            android:height="108dp"
+            android:viewportWidth="108"
+            android:viewportHeight="108">
+            <path
+                android:fillColor="#00000000"
+                android:strokeColor="#FFFFFFFF"
+                android:strokeWidth="2.5"
+                android:pathData="M54,24 C63,24 72,28 76,34 C77,42 76,52 72,61 C68,70 61,78 54,84 C47,78 40,70 36,61 C32,52 31,42 32,34 C36,28 45,24 54,24 Z" />
+            <path
+                android:fillColor="#FFFFFFFF"
+                android:pathData="M40,28a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,56a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M40,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M54,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M68,42a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M54,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12M68,70a6,6 0 1 0 0,12a6,6 0 1 0 0,-12" />
+        </vector>
+    </monochrome>
+</adaptive-icon>

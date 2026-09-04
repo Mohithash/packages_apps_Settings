@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the legacy AndroidX-Preference per-app screens
+     (res/xml/privacykit_package_list_settings.xml and
+     privacykit_package_config_settings.xml). The Compose home screen
+     redirects past them, but they are still built and must still resolve.
+
+     RECONSTRUCTED 2026-08-19. Every value below is byte-exact from the r49
+     Settings.apk resource table. Which res/values file this block
+     originally lived in is NOT recoverable: aapt2 sorts string resources
+     alphabetically, so the shipped public.xml carries no file-partition
+     information. res/values/*.xml all merge, so the split is cosmetic; the
+     names follow the strings_privacykit_<feature>.xml convention proven by
+     the surviving _ai / _controls / _hub / _identifiers / _randomise files.
+-->
+<resources>
+    <string name="privacykit_category_identity">Identity spoofing</string>
+    <string name="privacykit_category_obscura">App visibility &amp; status</string>
+    <string name="privacykit_category_restrict">Access restrictions</string>
+    <string name="privacykit_device_profile_summary">"Apply a curated real device identity, or generate one with AI, for this app's Build.* fields"</string>
+    <string name="privacykit_device_profile_title">Generate new profile</string>
+    <string name="privacykit_footer_text">Spoofed values are stable and generated per app, so an app that checks its own identity twice sees the same fake value both times. Turning a toggle off reverts that app to the real value.</string>
+    <string name="privacykit_force_data_isolation_summary">Force this app into the modern sandboxed storage model even if it requested broad legacy storage access</string>
+    <string name="privacykit_force_data_isolation_title">Force data isolation</string>
+    <string name="privacykit_hide_app_summary">Other apps on this device will not see this app is installed</string>
+    <string name="privacykit_hide_app_title">Hide from other apps</string>
+    <string name="privacykit_hide_dev_status_summary">Report ADB, developer options, wireless debugging, package verifier, and USB app verification as off/disabled to this app</string>
+    <string name="privacykit_hide_dev_status_title">Hide developer &amp; security status</string>
+    <string name="privacykit_hide_launcher_summary">"Remove this app's icon from the home screen and app drawer (the app still runs and is reachable from Settings)"</string>
+    <string name="privacykit_hide_launcher_title">Hide app icon</string>
+    <string name="privacykit_packages_title">PrivacyKit</string>
+    <string name="privacykit_restrict_internet_summary">Prevent this app from using Wi-Fi or mobile data entirely</string>
+    <string name="privacykit_restrict_internet_title">Block internet access</string>
+    <string name="privacykit_restrict_storage_summary">Prevent this app from reading or writing shared/external storage, even with permission granted</string>
+    <string name="privacykit_restrict_storage_title">Block shared storage access</string>
+    <string name="privacykit_spoof_android_id_summary">Give this app a fake, stable Android ID instead of the real one</string>
+    <string name="privacykit_spoof_android_id_title">Spoof Android ID</string>
+    <string name="privacykit_spoof_build_identity_summary">Give this app a fake, internally-consistent device fingerprint, model, manufacturer, brand, and hardware identity</string>
+    <string name="privacykit_spoof_build_identity_title">Spoof device build identity</string>
+    <string name="privacykit_spoof_iccid_summary">Give this app a fake SIM card serial number</string>
+    <string name="privacykit_spoof_iccid_title">Spoof SIM serial (ICCID)</string>
+    <string name="privacykit_spoof_imei_summary">Give this app a fake, checksum-valid IMEI</string>
+    <string name="privacykit_spoof_imei_title">Spoof IMEI</string>
+    <string name="privacykit_spoof_imsi_summary">Give this app a fake SIM subscriber identity</string>
+    <string name="privacykit_spoof_imsi_title">Spoof IMSI (SIM identity)</string>
+    <string name="privacykit_spoof_phone_number_summary">Give this app a fake phone number</string>
+    <string name="privacykit_spoof_phone_number_title">Spoof phone number</string>
+    <string name="privacykit_spoof_serial_summary">Give this app a fake device serial number</string>
+    <string name="privacykit_spoof_serial_title">Spoof device serial</string>
+</resources>

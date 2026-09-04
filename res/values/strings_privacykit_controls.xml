@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the per-app "App controls" screen (which replaced the legacy
+     AndroidX-Preference bridge) and for the profile colour/note metadata UI
+     that the same round added to the Apps and Profiles tabs. Both features are
+     owned by the same files, so they share one strings file rather than
+     touching the shared strings.xml, which res/values/*.xml merges anyway.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App controls screen ================================================ -->
+
+    <!-- Category heading above the one-tap coherent device-identity picker -->
+    <string name="privacykit_controls_category_identity">Device identity</string>
+
+    <!-- Footer explaining which controls are per-app and which are per-profile -->
+    <string name="privacykit_controls_footer">Visibility and access restrictions apply to this app everywhere, whichever profile is active. The device identity is written into the active profile, so each profile can present a different device.</string>
+
+    <!-- Title of the dialog that picks a coherent device identity for this app -->
+    <string name="privacykit_device_profile_pick_title">Device identity</string>
+
+    <!-- Picker option: stop spoofing Build.* and report the real device -->
+    <string name="privacykit_device_profile_none">None (real identity)</string>
+
+    <!-- Picker option: ask the configured AI provider to invent a device identity -->
+    <string name="privacykit_device_profile_ai">Generate with AI…</string>
+
+    <!-- Shown under the AI option when no AI provider has been configured yet -->
+    <string name="privacykit_device_profile_ai_not_set_up">Set up an AI provider in the Settings tab first</string>
+
+    <!-- Title of the progress dialog shown while the AI provider is generating -->
+    <string name="privacykit_device_profile_ai_working">Generating a device identity…</string>
+
+    <!-- Error shown when AI generation returned nothing usable -->
+    <string name="privacykit_device_profile_ai_failed">Couldn\'t generate an identity. Check the AI provider in the Settings tab.</string>
+
+    <!-- Current-state summary: this profile reports the device's real Build.* values -->
+    <string name="privacykit_device_profile_current_real">Reporting this device\'s real identity</string>
+
+    <!-- Current-state summary: Build.* is spoofed to values that match no built-in template -->
+    <string name="privacykit_device_profile_current_custom">Custom identity</string>
+
+    <!-- Confirmation shown after a device identity was applied, e.g. "Applied Google Pixel 8 Pro" -->
+    <string name="privacykit_device_profile_applied">Applied <xliff:g id="identity_name" example="Google Pixel 8 Pro">%1$s</xliff:g></string>
+
+    <!-- Confirmation shown after the spoofed device identity was removed -->
+    <string name="privacykit_device_profile_reverted">Now reporting the real device identity</string>
+
+    <!-- Profile colour ==================================================== -->
+
+    <!-- Profile action: give this profile a colour so it's identifiable at a glance -->
+    <string name="privacykit_profile_color">Colour</string>
+
+    <!-- Title of the profile colour picker dialog -->
+    <string name="privacykit_profile_color_title">Profile colour</string>
+
+    <!-- Colour picker option: remove this profile's colour -->
+    <string name="privacykit_profile_color_none">No colour</string>
+
+    <!-- Profile colour name -->
+    <string name="privacykit_color_blue">Blue</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_green">Green</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_amber">Amber</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_red">Red</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_purple">Purple</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_teal">Teal</string>
+    <!-- Profile colour name -->
+    <string name="privacykit_color_grey">Grey</string>
+
+    <!-- Profile note ====================================================== -->
+
+    <!-- Profile action: attach a free-text reminder to this profile -->
+    <string name="privacykit_profile_note">Note</string>
+
+    <!-- Title of the dialog that edits a profile's note -->
+    <string name="privacykit_profile_note_title">Profile note</string>
+
+    <!-- Hint inside the note text field, and how to remove an existing note -->
+    <string name="privacykit_profile_note_hint">What this profile is for</string>
+
+    <!-- Explains that clearing the field removes the note -->
+    <string name="privacykit_profile_note_clear_hint">Leave empty to remove the note.</string>
+
+    <!-- Identifier coverage notes ========================================= -->
+    <!-- These replace the generic "Not enforced yet" copy on an identifier row
+         with the truth for that identifier. They are the localized form of the
+         source text kept in PrivacyKitIdentifierCatalog, and are read through
+         PrivacyKitIdentifierCatalog.noteOf(context, key). Keep the two in sync:
+         the catalog is the audit trail, these are what the user reads. -->
+
+    <!-- Why the Firebase installation ID / app instance ID cannot be changed -->
+    <string name="privacykit_note_firebase_id">This ID is created by the app itself, inside its own process, and is never asked of the system, so there is nothing to intercept or replace. Clearing the app\'s data makes the app create a new one.</string>
+
+    <!-- Why the kernel version cannot be changed -->
+    <string name="privacykit_note_kernel_version">The kernel reports this value directly and Android refuses to overwrite it. A fake value would also disagree with /proc/version and with a system call any app can make, which is easier to spot than the real value.</string>
+
+    <!-- Why the MEID row can never show anything - this is a win, not a gap -->
+    <string name="privacykit_note_meid">This phone has no MEID. It is a CDMA-only identifier that this Android version no longer provides, so every app that asks already gets nothing back and there is nothing left to hide.</string>
+
+    <!-- Why last boot time cannot be changed -->
+    <string name="privacykit_note_last_boot_time">Apps work this out from the system clock and the time since the device booted, not from a value the system hands them. Changing it would break timers, animations and app-not-responding detection inside the app.</string>
+
+    <!-- Why the Wi-Fi / Bluetooth MAC rows need no spoof: Android already hides them -->
+    <string name="privacykit_note_mac_already_hidden">Android already hides this. Every app without a system signature reads 02:00:00:00:00:00 instead of the real address, so there is nothing left to replace. The real address can still be read by native code straight from the kernel, which is outside what PrivacyKit changes on the Java side.</string>
+
+    <!-- Why the SDK / API level is deliberately left real -->
+    <string name="privacykit_note_os_sdk_int">Left real on purpose. Apps use the API level to decide which system features to call, so a fake one makes their support libraries call methods that do not exist and the app crashes.</string>
+
+    <!-- Why the App Set ID hook does not reach apps on this device -->
+    <string name="privacykit_note_app_set_id">PrivacyKit can replace this ID when an app asks Android\'s AdServices for it, but apps get it from Google Play services instead, over a connection that never passes through that interface. Testing on this device confirmed the value an app reads does not change, so this is listed as not enforced.</string>
+
+    <!-- Phone number: spoofed on two readers, real on a third -->
+    <string name="privacykit_note_phone_number">The deprecated TelephonyManager.getLine1Number() and the modern SubscriptionManager.getPhoneNumber() are both spoofed. SubscriptionInfo.getNumber() is a third reader that still returns the real number to apps holding the phone-number permission, so an app using it can read the real number and detect the spoof.</string>
+
+    <!-- Radio/baseband version: the deprecated field is spoofed, the live getter is not -->
+    <string name="privacykit_note_build_radio_version">Overrides the deprecated Build.RADIO field, which really is spoofed. Build.getRadioVersion() recomputes from the telephony properties on every call and still reports the real baseband.</string>
+
+    <!-- Widevine device ID: Java path spoofed, NDK path normally not -->
+    <string name="privacykit_note_media_drm_id">Spoofed for apps that read it through the Java MediaDrm API, using Real, Static or Custom. The NDK path AMediaDrm_getPropertyByteArray bypasses Java entirely; this build contains a hook for it too, but that hook is switched off by default and is skipped on threads with no JNI environment, so a native caller normally still reads the real Widevine ID, and can detect the spoof by comparing what the two APIs return. Per-launch, Daily and Empty are refused for this key: a rotating ID burns streaming device-registration slots, and an empty one breaks apps that size-check the value.</string>
+
+    <!-- Accounts: the app-op denial only covers a legacy path -->
+    <string name="privacykit_note_accounts">The GET_ACCOUNTS app-op is denied, but AccountManager only consults it in a legacy fallback path, so a modern app\'s account list is not reliably emptied.</string>
+
+    <!-- Locale: system locale moved, app resource language deliberately left real -->
+    <string name="privacykit_note_device_locale">Moves Locale.getDefault() and the ICU/formatter locale, so formatting, dates and Locale.getDefault() all follow the spoofed locale. The app\'s resource configuration is deliberately left alone so apps keep loading the translations they ship, which means Resources.getConfiguration().getLocales() still reports the real locale and an app that reads it can tell.</string>
+
+    <!-- GSF ID: provider path spoofed, direct Play services reads are not -->
+    <string name="privacykit_note_gsf_id">The Google Services Framework ID is substituted for apps that read it through the gservices provider query, using Real, Static, Random or a plain-decimal Custom value. Apps that read it through Google Play services directly, rather than the query, still get the real ID.</string>
+
+    <!-- Advertising ID: blocked rather than faked, and that is detectable -->
+    <string name="privacykit_note_advertising_id">Blocks the advertising ID, it does not fake one. The ID is created inside Google Play services, so the app\'s request for it is refused and the app sees the ID as unavailable, as on a phone with no Google services. This is detectable: an app whose other Play services calls keep working can tell it is being filtered. It does not retract an ID the app already stored before you turned this on, and it does not affect Google\'s own use of the ID inside Play services.</string>
+
+    <!-- Scope limit shared by every in-process Build.* override -->
+    <string name="privacykit_note_injector_scope">This is applied inside the app\'s own process, on the Java android.os.Build fields. Native code that reads the same value directly from the system, anything that parses /system/build.prop, and the WebView user-agent string all still report the real device.</string>
+
+    <!-- Category heading for the per-app device-state spoof toggles. -->
+    <string name="privacykit_category_spoof">Spoof settings</string>
+    <string name="privacykit_spoof_adb_title">ADB</string>
+    <string name="privacykit_spoof_adb_summary">Report ADB as disabled</string>
+    <string name="privacykit_spoof_devopts_title">Developer Options</string>
+    <string name="privacykit_spoof_devopts_summary">Report developer options as disabled</string>
+    <string name="privacykit_spoof_wireless_adb_title">Wireless Debugging</string>
+    <string name="privacykit_spoof_wireless_adb_summary">Report wireless debugging as disabled</string>
+    <string name="privacykit_spoof_pkg_verifier_title">Package Verifier</string>
+    <string name="privacykit_spoof_pkg_verifier_summary">Report package verifier consent as denied</string>
+    <string name="privacykit_spoof_usb_verify_title">USB App Verification</string>
+    <string name="privacykit_spoof_usb_verify_summary">Report app verification over USB as disabled</string>
+    <string name="privacykit_spoof_a11y_title">Accessibility</string>
+    <string name="privacykit_spoof_a11y_summary">Report accessibility services as disabled</string>
+    <!-- Honest footer under the spoof switches: these change only what the app
+         reads, they do not actually turn anything off. -->
+    <string name="privacykit_spoof_footer">These switches change only what this app reads from system settings. Nothing is actually turned off: ADB, developer options and your accessibility services keep working for you and for every other app. An app that looks somewhere else, such as a system property, a running process or an open port, still sees the truth. Reporting accessibility as disabled can break an app you drive with a screen reader.</string>
+
+    <!-- Behaviour controls ================================================ -->
+
+    <!-- Category heading for the three system-enforced per-app behaviour limits -->
+    <string name="privacykit_controls_category_behaviour">App behaviour</string>
+
+    <!-- Switch: hand this app an empty clipboard when it reads one -->
+    <string name="privacykit_block_clipboard_title">Block clipboard reads</string>
+    <!-- Summary for the clipboard-read switch -->
+    <string name="privacykit_block_clipboard_summary">This app reads an empty clipboard. It can still copy.</string>
+
+    <!-- Switch: stop this app launching work while it is not on screen -->
+    <string name="privacykit_block_background_start_title">Block background starts</string>
+    <!-- Summary for the background-start switch -->
+    <string name="privacykit_block_background_start_summary">Stop this app starting services when it is not open.</string>
+
+    <!-- Switch: withdraw the permissions granted to this app once it stops -->
+    <string name="privacykit_auto_revoke_exit_title">Revoke permissions on exit</string>
+    <!-- Summary for the revoke-on-exit switch -->
+    <string name="privacykit_auto_revoke_exit_summary">Take back granted permissions once the app stops.</string>
+
+    <!-- Honest footer under the three behaviour switches: who enforces them and
+         what the user will actually notice afterwards. -->
+    <string name="privacykit_controls_behaviour_footer">Android enforces these three, not the app, so they hold even while the app is running in the background. Blocking background starts can delay notifications, alarms and syncing for this app. Revoking permissions on exit means the app will ask for them again the next time you open it.</string>
+
+</resources>

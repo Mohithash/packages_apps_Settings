@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     AppSearch static metadata for PrivacyKitAppFunctionService.
+
+     The apps indexer (AppsUtil.buildAppFunctionDocumentsIntoMap) reads the
+     "android.app.appfunctions" <property> declared on the AppFunctionService
+     component, treats its value as a path inside the APK's assets, and parses
+     it with AppFunctionDocumentParserImpl. A function that is not listed here
+     is never indexed, and AppFunctionManagerHelper.isAppFunctionEnabled() then
+     fails the call before the service is ever bound - so this file is what
+     makes the functions reachable at all.
+
+     Kept separate from assets/appfunctions.xml on purpose: that one belongs to
+     the upstream device-state service, whose concrete implementation this ROM
+     does not carry.
+
+     schema_name / schema_version / schema_category are omitted deliberately.
+     They name a schema in the AppFunctions canonical source; these functions
+     are PrivacyKit-specific and match no canonical schema, and claiming one
+     would be a lie to any caller that resolved it.
+
+     display_name_string_res is also omitted: the parser wants a literal
+     numeric resource id, which cannot be written into a plain asset (it is not
+     compiled against the resource table). Upstream's own appfunctions.xml
+     omits it for the same reason.
+-->
+
+<appfunctions>
+
+    <!-- Read-only. -->
+
+    <appfunction>
+        <function_id>privacyKitListManagedApps</function_id>
+        <enabled_by_default>true</enabled_by_default>
+        <restrict_callers_with_execute_app_functions>false</restrict_callers_with_execute_app_functions>
+    </appfunction>
+
+    <appfunction>
+        <function_id>privacyKitListProfiles</function_id>
+        <enabled_by_default>true</enabled_by_default>
+        <restrict_callers_with_execute_app_functions>false</restrict_callers_with_execute_app_functions>
+    </appfunction>
+
+    <appfunction>
+        <function_id>privacyKitGetIdentifierRule</function_id>
+        <enabled_by_default>true</enabled_by_default>
+        <restrict_callers_with_execute_app_functions>false</restrict_callers_with_execute_app_functions>
+    </appfunction>
+
+    <!--
+         Mutating. restrict_callers_with_execute_app_functions asks the platform
+         to keep these away from callers holding only EXECUTE_APP_FUNCTIONS
+         (as opposed to EXECUTE_APP_FUNCTIONS_TRUSTED).
+
+         NOTE: on this tree that property is parsed and indexed but never read
+         by any enforcement code - AppFunctionStaticMetadataHelper defines the
+         constant and nothing consults it. It therefore enforces nothing today;
+         the effective gate is the runtime check in
+         PrivacyKitAppFunctionService.requireMutationAllowed(). It is set here
+         so the intent is already correct if a later merge starts honouring it.
+    -->
+
+    <appfunction>
+        <function_id>privacyKitSetActiveProfile</function_id>
+        <enabled_by_default>true</enabled_by_default>
+        <restrict_callers_with_execute_app_functions>true</restrict_callers_with_execute_app_functions>
+    </appfunction>
+
+    <appfunction>
+        <function_id>privacyKitSetIdentifierRule</function_id>
+        <enabled_by_default>true</enabled_by_default>
+        <restrict_callers_with_execute_app_functions>true</restrict_callers_with_execute_app_functions>
+    </appfunction>
+
+</appfunctions>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Shared PrivacyKit UI shell strings: the page title, the four bottom
+     tabs, the generic verbs reused across screens, the app-list empty and
+     no-match states, and the About section.
+
+     RECONSTRUCTED 2026-08-19. Every value below is byte-exact from the r49
+     Settings.apk resource table. Which res/values file this block
+     originally lived in is NOT recoverable: aapt2 sorts string resources
+     alphabetically, so the shipped public.xml carries no file-partition
+     information. res/values/*.xml all merge, so the split is cosmetic; the
+     names follow the strings_privacykit_<feature>.xml convention proven by
+     the surviving _ai / _controls / _hub / _identifiers / _randomise files.
+-->
+<resources>
+    <string name="privacykit_about_body">Native, no-root per-app identity spoofing built into this ROM. Android %1$s (%2$s).</string>
+    <string name="privacykit_about_title">About PrivacyKit</string>
+    <string name="privacykit_add_app">Add app</string>
+    <string name="privacykit_apps_empty_summary">Add an app to give it its own profiles and spoofed identity.</string>
+    <string name="privacykit_apps_empty_title">No apps added yet</string>
+    <string name="privacykit_apps_no_matches_summary">Try a different name.</string>
+    <string name="privacykit_apps_no_matches_title">No matching apps</string>
+    <string name="privacykit_back">Back</string>
+    <string name="privacykit_cancel">Cancel</string>
+    <string name="privacykit_create">Create</string>
+    <string name="privacykit_custom_value">Custom value</string>
+    <string name="privacykit_delete">Delete</string>
+    <string name="privacykit_identifiers_title">Identifiers</string>
+    <string name="privacykit_not_enforced_notice">This identifier is not enforced by any framework hook yet on this ROM. The rule below is saved but has no effect until a matching hook is added.</string>
+    <string name="privacykit_save">Save</string>
+    <string name="privacykit_search_apps">Search apps</string>
+    <string name="privacykit_service_unavailable">PrivacyKit service unavailable</string>
+    <string name="privacykit_tab_apps">Apps</string>
+    <string name="privacykit_tab_history">History</string>
+    <string name="privacykit_tab_profiles">Profiles</string>
+    <string name="privacykit_tab_settings">Settings</string>
+    <string name="privacykit_title">PrivacyKit</string>
+</resources>

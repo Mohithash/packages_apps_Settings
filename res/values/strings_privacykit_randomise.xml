@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2026 BestROM
+  SPDX-License-Identifier: Apache-2.0
+
+  Strings for the Randomise controls on the PrivacyKit Identifiers screen.
+  Deliberately its own per-feature file, and every name is prefixed
+  privacykit_rnd_ so it cannot collide with another feature added in the same
+  round. Nothing here claims an identifier is enforced - the enforcement
+  wording lives in strings_privacykit_identifiers.xml and is unchanged.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Content description for the "randomise every eligible identifier" toolbar action. -->
+    <string name="privacykit_rnd_action">Randomise all</string>
+
+    <!-- Button that fills the Custom value field with a freshly generated value. -->
+    <string name="privacykit_rnd_field_button">Randomise</string>
+
+    <!-- Shown under the Custom value field for a key PrivacyKit cannot generate a
+         correctly shaped value for. -->
+    <string name="privacykit_rnd_no_generator">PrivacyKit has no format for this identifier yet, so it cannot generate one. Enter a value with the same shape as the real one, or leave the rule on Real.</string>
+
+    <!-- Shown under the Custom value field for media_drm_id, which can only be generated
+         where the real value is available. -->
+    <string name="privacykit_rnd_needs_real_value">This value must keep exactly the same length as the real one or apps discard it, and only the system can see that length. Use Static instead: the system generates it correctly there.</string>
+
+    <!-- Shown under the Custom value field for Build and OS version fields. -->
+    <string name="privacykit_rnd_build_coherence">Build and OS fields are never randomised one at a time. A random model next to a real manufacturer is an impossible device, and that is easier to fingerprint than not spoofing at all. Use a device template, which sets all eight Build fields to one real, consistent device.</string>
+
+    <!-- Title of the bulk randomise confirmation. %1$d is the number of identifiers. -->
+    <string name="privacykit_rnd_confirm_title">Randomise %1$d identifiers?</string>
+
+    <!-- Title used when nothing can be randomised but Build fields can be made consistent. -->
+    <string name="privacykit_rnd_confirm_title_build">Make the Build fields consistent?</string>
+
+    <!-- Body of the bulk randomise confirmation. -->
+    <string name="privacykit_rnd_confirm_body">These get a brand new value on this app profile. This cannot be undone, and any Custom value you typed yourself is replaced.</string>
+
+    <!-- Second paragraph of the bulk randomise confirmation. %1$d is the number of
+         configured identifiers left untouched. -->
+    <string name="privacykit_rnd_confirm_skipped">%1$d identifiers you have configured are left exactly as they are: Per launch, Daily and Empty rules, the privacy restrictions, and identifiers PrivacyKit has no format for. Anything still set to Real is never touched.</string>
+
+    <!-- Coherence warning shown when Build fields are spoofed. %1$d is how many of the
+         eight coherent Build fields are currently spoofed. -->
+    <string name="privacykit_rnd_build_warning">%1$d of the 8 Build fields are spoofed on this app. They are excluded here on purpose: randomising them separately builds a device that cannot exist, which makes the app easier to fingerprint, not harder.</string>
+
+    <!-- Opt-in shown next to the coherence warning. %1$s is a device template name. -->
+    <string name="privacykit_rnd_template_checkbox">Also set all 8 Build fields to one real device: %1$s</string>
+
+    <!-- Confirms the bulk randomise. -->
+    <string name="privacykit_rnd_confirm_button">Randomise</string>
+
+    <!-- Cancels the bulk randomise. -->
+    <string name="privacykit_rnd_cancel">Cancel</string>
+
+    <!-- Title shown when nothing is eligible for bulk randomise. -->
+    <string name="privacykit_rnd_none_title">Nothing to randomise</string>
+
+    <!-- Body shown when nothing is eligible for bulk randomise. -->
+    <string name="privacykit_rnd_none_body">Randomise all only regenerates identifiers that are already set to Static or Custom and that PrivacyKit has a format for. Nothing on this app profile matches yet. Set an identifier to Static or Custom first, and use a device template for the Build fields.</string>
+
+</resources>

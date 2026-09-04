@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the Settings tab Backup and Restore section.
+
+     RECONSTRUCTED 2026-08-19. Every value below is byte-exact from the r49
+     Settings.apk resource table. Which res/values file this block
+     originally lived in is NOT recoverable: aapt2 sorts string resources
+     alphabetically, so the shipped public.xml carries no file-partition
+     information. res/values/*.xml all merge, so the split is cosmetic; the
+     names follow the strings_privacykit_<feature>.xml convention proven by
+     the surviving _ai / _controls / _hub / _identifiers / _randomise files.
+-->
+<resources>
+    <string name="privacykit_backup_export">Export backup</string>
+    <string name="privacykit_backup_export_failed">Export failed: %1$s</string>
+    <string name="privacykit_backup_exported">Backup exported.</string>
+    <string name="privacykit_backup_import">Import backup</string>
+    <string name="privacykit_backup_import_failed">Import failed: %1$s</string>
+    <string name="privacykit_backup_imported">Imported %1$d package(s).</string>
+    <string name="privacykit_backup_read_failed">could not read file</string>
+    <string name="privacykit_backup_summary">Export your PrivacyKit profiles, rules, and activity history to a file, or restore profiles and rules from a previous export.</string>
+    <string name="privacykit_backup_title">Backup &amp; Restore</string>
+    <string name="privacykit_restore_merge">Merge</string>
+    <string name="privacykit_restore_message">Merge adds or updates the packages and profiles found in this backup, leaving everything else untouched.</string>
+    <string name="privacykit_restore_replace">Replace all instead (discards current profiles first)</string>
+    <string name="privacykit_restore_title">Restore backup</string>
+</resources>

@@ -6475,5 +6475,56 @@
             </intent-filter>
         </receiver>
 
+        <!-- PrivacyKit-Native: trampoline behind a pinned "launch under this
+             profile" shortcut. Not exported - the launcher starts pinned
+             shortcuts through LauncherApps on our behalf, and exporting it
+             would let any app flip PrivacyKit profiles. -->
+        <activity android:name=".privacykit.PrivacyKitShortcutActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+
+        <!-- PrivacyKit-Native: standalone launcher icon -->
+        <activity android:name="Settings$PrivacyKitLauncherActivity"
+            android:label="@string/privacykit_title"
+            android:icon="@drawable/ic_privacykit_launcher"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.privacykit.PrivacyKitPackageListFragment"/>
+        </activity>
+
+        <!--
+             PrivacyKit on the AppFunctions surface (Android on-device agent /
+             MCP entry point).
+
+             What makes this an AppFunctions target is exactly this declaration:
+             the AppFunctionService action, guarded by BIND_APP_FUNCTION_SERVICE
+             so only system_server can bind it (ServiceHelperImpl refuses to
+             resolve a service whose serviceInfo.permission is anything else),
+             plus the android.app.appfunctions property naming the asset that
+             lists the functions for the AppSearch apps indexer.
+
+             The functions themselves are described in
+             assets/privacykit_appfunctions.xml; the mutating ones are refused at
+             runtime unless PrivacyKit own agent gate is on and the device is
+             unlocked - see PrivacyKitAppFunctionService.
+        -->
+        <service
+            android:name=".privacykit.PrivacyKitAppFunctionService"
+            android:label="@string/privacykit_appfn_service_label"
+            android:exported="true"
+            android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <property
+                android:name="android.app.appfunctions"
+                android:value="privacykit_appfunctions.xml" />
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>

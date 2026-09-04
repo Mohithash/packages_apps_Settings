@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for profiles: the Profiles tab, plus the per-app profile list
+     and its create / rename / duplicate / delete actions in the Apps tab.
+
+     RECONSTRUCTED 2026-08-19. Every value below is byte-exact from the r49
+     Settings.apk resource table. Which res/values file this block
+     originally lived in is NOT recoverable: aapt2 sorts string resources
+     alphabetically, so the shipped public.xml carries no file-partition
+     information. res/values/*.xml all merge, so the split is cosmetic; the
+     names follow the strings_privacykit_<feature>.xml convention proven by
+     the surviving _ai / _controls / _hub / _identifiers / _randomise files.
+-->
+<resources>
+    <plurals name="privacykit_profile_count">
+        <item quantity="other">%d profiles</item>
+        <item quantity="one">%d profile</item>
+    </plurals>
+    <string name="privacykit_active">Active</string>
+    <string name="privacykit_create_profile">Create profile</string>
+    <string name="privacykit_delete_profile">Delete profile</string>
+    <string name="privacykit_delete_profile_message">"This can't be undone."</string>
+    <string name="privacykit_delete_profile_title">Delete profile?</string>
+    <string name="privacykit_launch">Launch</string>
+    <string name="privacykit_mode_hybrid">Hybrid</string>
+    <string name="privacykit_mode_isolated">Isolated</string>
+    <string name="privacykit_mode_shared">Shared</string>
+    <string name="privacykit_profile_change_mode">Change mode</string>
+    <string name="privacykit_profile_duplicate">Duplicate</string>
+    <string name="privacykit_profile_duplicate_failed">"Couldn't duplicate profile"</string>
+    <string name="privacykit_profile_duplicate_name">%1$s copy</string>
+    <string name="privacykit_profile_duplicating">Duplicating profile…</string>
+    <string name="privacykit_profile_more_actions">More options</string>
+    <string name="privacykit_profile_name">Profile name</string>
+    <string name="privacykit_profile_rename">Rename</string>
+    <string name="privacykit_profile_rename_title">Rename profile</string>
+    <string name="privacykit_profile_set_active">Set as active</string>
+    <string name="privacykit_profiles_empty_summary">Create a profile to give this app a separate identity.</string>
+    <string name="privacykit_profiles_empty_title">No profiles yet</string>
+    <string name="privacykit_profiles_tab_empty_summary">Add an app in the Apps tab to create its first profile.</string>
+</resources>

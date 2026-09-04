@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the per-profile "Profile hub" screen (the landing page a
+     profile now opens into), its read-only "Verify values" cross-check, and
+     the searchable add-app picker sheet that replaced the old add-app dialog.
+     Row titles that already existed elsewhere (Device identity, Identifiers,
+     Launch, the mode names, Rename / Colour / Note) are deliberately reused
+     from strings_privacykit_apps.xml / _controls.xml / _identifiers.xml rather
+     than duplicated here.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Profile hub ======================================================= -->
+
+    <!-- Subtitle under the profile name on the hub header: app name and profile mode -->
+    <string name="privacykit_hub_subtitle"><xliff:g id="app_name" example="Instagram">%1$s</xliff:g>  •  <xliff:g id="profile_mode" example="Hybrid">%2$s</xliff:g></string>
+
+    <!-- Summary of the Identifiers row: how many identifiers have a rule set -->
+    <plurals name="privacykit_hub_identifier_count">
+        <item quantity="one"><xliff:g id="count" example="1">%1$d</xliff:g> configured</item>
+        <item quantity="other"><xliff:g id="count" example="12">%1$d</xliff:g> configured</item>
+    </plurals>
+
+    <!-- Hub row that opens the read-only value cross-check -->
+    <string name="privacykit_hub_verify_title">Verify values</string>
+    <!-- Summary of the Verify values row -->
+    <string name="privacykit_hub_verify_summary">What apps read vs your real device</string>
+
+    <!-- Hub row that changes this profile isolation mode -->
+    <string name="privacykit_hub_mode_title">Profile mode</string>
+
+    <!-- Hub row showing how much storage this app uses -->
+    <string name="privacykit_hub_app_data_title">App data</string>
+    <!-- Summary of the App data row when the size is known -->
+    <string name="privacykit_hub_app_data_summary"><xliff:g id="size" example="42 MB">%1$s</xliff:g>  •  Manage in App info</string>
+    <!-- Summary of the App data row when the storage stats are unavailable -->
+    <string name="privacykit_hub_app_data_unknown">Size unavailable  •  Manage in App info</string>
+
+    <!-- Hub row naming the app this profile belongs to -->
+    <string name="privacykit_hub_apps_using_title">Apps using this profile</string>
+    <!-- Summary of the Apps using this profile row: a profile belongs to exactly one app -->
+    <string name="privacykit_hub_apps_using_summary">Only <xliff:g id="app_name" example="Instagram">%1$s</xliff:g> uses this profile</string>
+
+    <!-- Section heading above the per-app controls row at the bottom of the hub -->
+    <string name="privacykit_hub_advanced">Advanced</string>
+    <!-- Hub row that opens the visibility and access-restriction switches -->
+    <string name="privacykit_hub_controls_title">Controls</string>
+    <!-- Summary of the Controls row, which is per-app rather than per-profile -->
+    <string name="privacykit_hub_controls_summary">Visibility and access restrictions. Applies to every profile of this app.</string>
+
+    <!-- Button pinned at the bottom of the hub: start the app under this profile -->
+    <string name="privacykit_hub_launch">Launch with this profile</string>
+    <!-- Shown above the launch button when the app cannot be started from a launcher -->
+    <string name="privacykit_hub_no_launcher">This app has no launcher entry</string>
+
+    <!-- Content description of the hub header action that edits name, colour and note -->
+    <string name="privacykit_hub_edit">Edit profile</string>
+    <!-- Content description of the hub header action that shares this profile as JSON -->
+    <string name="privacykit_hub_share">Share profile</string>
+
+    <!-- Verify values screen ============================================== -->
+
+    <!-- Empty state title when no identifier has a rule set yet -->
+    <string name="privacykit_verify_empty_title">Nothing configured yet</string>
+    <!-- Second line of the Verify values empty state -->
+    <string name="privacykit_verify_empty_summary">Set a rule on an identifier and it will appear here with the value apps actually read.</string>
+
+    <!-- Status of one identifier: the app reads something other than the real value -->
+    <string name="privacykit_verify_status_spoofed">Spoofed</string>
+    <!-- Status of one identifier: enforced, but the configured value equals the real one -->
+    <string name="privacykit_verify_status_matches_real">Matches your real device</string>
+    <!-- Status of one identifier: a rule is stored but no hook applies it yet -->
+    <string name="privacykit_verify_status_not_enforced">Configured</string>
+    <!-- Status of one identifier whose real value Settings cannot read -->
+    <string name="privacykit_verify_status_unknown">Real value not readable from Settings</string>
+    <!-- One Verify values row: status, then the value the app reads, then the real value -->
+    <string name="privacykit_verify_row_summary"><xliff:g id="status" example="Spoofed">%1$s</xliff:g>\nApp reads: <xliff:g id="seen_value" example="Pixel 8 Pro">%2$s</xliff:g>\nReal: <xliff:g id="real_value" example="POCO F6">%3$s</xliff:g></string>
+    <!-- Footer explaining when the values on the Verify screen take effect -->
+    <string name="privacykit_verify_footer">These values are resolved through Privacy Kit right now. Identifiers applied inside the app process, such as build and OS fields, only change for an app the next time it starts from cold, and a randomised rule shows one sample rather than the exact value the app receives.</string>
+
+    <!-- Add-app picker sheet ============================================== -->
+
+    <!-- Content description of the button that clears the picker search field -->
+    <string name="privacykit_clear_search">Clear search</string>
+    <!-- Empty state shown when every launchable app is already managed -->
+    <string name="privacykit_picker_none_left_title">All apps added</string>
+    <!-- Second line of the picker empty state -->
+    <string name="privacykit_picker_none_left_summary">Every app that can be launched is already managed by Privacy Kit.</string>
+
+    <!-- Title of the hub row that opens the device-identity preset picker. -->
+    <string name="privacykit_hub_template_title">Device template</string>
+
+
+
+    <!-- Preset, location and simulation hub rows ========================== -->
+
+    <!-- Hub row that opens the region preset picker -->
+    <string name="privacykit_hub_region_preset_title">Region Preset</string>
+    <!-- Summary of the Region Preset row when no preset is applied -->
+    <string name="privacykit_hub_region_preset_summary">GPS, timezone, locale, and carrier together</string>
+
+    <!-- Hub row that opens the device preset picker -->
+    <string name="privacykit_hub_device_preset_title">Device Preset</string>
+    <!-- Summary of the Device Preset row when no preset is applied -->
+    <string name="privacykit_hub_device_preset_summary">Model, OS version, patch, and fingerprint together</string>
+
+    <!-- Hub row that opens the per-app location picker -->
+    <string name="privacykit_hub_location_title">Location</string>
+    <!-- Summary of the Location row when this profile has no location rule -->
+    <string name="privacykit_hub_location_real">Real / system location</string>
+
+    <!-- Hub row that opens the movement simulator -->
+    <string name="privacykit_hub_activity_title">Activity Simulation</string>
+    <!-- Summary of the Activity Simulation row when the position is fixed -->
+    <string name="privacykit_hub_activity_off">Not simulating movement</string>
+
+    <!-- Region preset screen ============================================== -->
+
+    <!-- Choice that removes the region preset -->
+    <string name="privacykit_region_none_title">No region preset</string>
+    <!-- Summary of the no-region-preset choice -->
+    <string name="privacykit_region_none_summary">Real timezone, locale, carrier and position</string>
+    <!-- One region preset row: timezone, then locale, then carrier name -->
+    <string name="privacykit_region_row_summary"><xliff:g id="time_zone" example="Europe/Paris">%1$s</xliff:g>  •  <xliff:g id="locale" example="fr-FR">%2$s</xliff:g>  •  <xliff:g id="operator" example="Orange F">%3$s</xliff:g></string>
+    <!-- Footer explaining what a region preset writes and where it stops -->
+    <string name="privacykit_region_footer">A region preset writes the timezone, locale, carrier name and numbers, country codes and a fixed position together, and blanks nearby-cell and Wi-Fi scan results because those would still place the real device. The SIM carrier id is deliberately left real: a wrong one contradicts the carrier numbers it indexes. The locale is only partly applied, because app resources keep the real one, and native readers of the system timezone property still see the real zone.</string>
+
+    <!-- Region preset names -->
+    <string name="privacykit_region_us_ny">United States - New York</string>
+    <string name="privacykit_region_gb_london">United Kingdom - London</string>
+    <string name="privacykit_region_de_berlin">Germany - Berlin</string>
+    <string name="privacykit_region_fr_paris">France - Paris</string>
+    <string name="privacykit_region_in_mumbai">India - Mumbai</string>
+    <string name="privacykit_region_jp_tokyo">Japan - Tokyo</string>
+    <string name="privacykit_region_br_sao_paulo">Brazil - Sao Paulo</string>
+    <string name="privacykit_region_au_sydney">Australia - Sydney</string>
+    <string name="privacykit_region_sg">Singapore</string>
+
+    <!-- Device preset screen ============================================== -->
+
+    <!-- Footer explaining what a device preset writes and where it stops -->
+    <string name="privacykit_device_preset_footer">A device preset writes the whole build identity as one coherent set. It cannot change what native code reads: the real chipset still shows through system properties, /proc and the graphics renderer name. Force stop the app for a new preset to take effect, because these values are applied once, when the app process starts.</string>
+
+    <!-- Location screen =================================================== -->
+
+    <!-- Choice that removes the location rule -->
+    <string name="privacykit_location_real_title">Use real location</string>
+    <!-- Summary of the use-real-location choice -->
+    <string name="privacykit_location_real_summary">This app reads the position the device actually has</string>
+    <!-- Summary of the Location row when the position is a fixed point -->
+    <string name="privacykit_location_current_fixed">Fixed at <xliff:g id="coordinates" example="48.856600, 2.352200">%1$s</xliff:g></string>
+    <!-- Summary of the Location row when a path is being simulated -->
+    <string name="privacykit_location_current_moving">Moving around <xliff:g id="coordinates" example="48.856600, 2.352200">%1$s</xliff:g></string>
+    <!-- Heading above the built-in coordinates -->
+    <string name="privacykit_location_places_category">Places</string>
+    <!-- Row that opens the free-form coordinate entry -->
+    <string name="privacykit_location_custom_title">Custom coordinates</string>
+    <!-- Summary of the custom coordinates row -->
+    <string name="privacykit_location_custom_summary">Enter a latitude and longitude</string>
+    <!-- Label of the latitude field -->
+    <string name="privacykit_location_latitude">Latitude</string>
+    <!-- Label of the longitude field -->
+    <string name="privacykit_location_longitude">Longitude</string>
+    <!-- Shown under the coordinate fields when what was typed is out of range -->
+    <string name="privacykit_location_invalid">Latitude must be between -90 and 90, and longitude between -180 and 180</string>
+    <!-- Confirm button of the coordinate dialog -->
+    <string name="privacykit_location_set">Set</string>
+    <!-- Footer explaining the reach of a location rule -->
+    <string name="privacykit_location_footer">A location rule changes the position this app is handed by the platform location APIs. It is not the system mock-location setting, and it does not move any other app. Raw satellite data, and a position that Google Play services works out for itself from nearby networks, can still expose the real place, so blank the Wi-Fi scan results and nearby cells as well - the region presets do that for you.</string>
+    <!-- Extra footer line shown while no location hook is enforced in this build -->
+    <string name="privacykit_location_not_enforced">Location rule saved with this profile.</string>
+
+    <!-- Activity simulation screen ======================================== -->
+
+    <!-- Heading above the movement choices -->
+    <string name="privacykit_activity_mode_category">Movement</string>
+    <!-- Movement choice: no movement at all -->
+    <string name="privacykit_activity_off_title">Off</string>
+    <!-- Summary of the no-movement choice -->
+    <string name="privacykit_activity_off_summary">Stay on the fixed point</string>
+    <!-- Movement choice: walking pace -->
+    <string name="privacykit_activity_walk_title">Walking</string>
+    <!-- Summary of the walking choice -->
+    <string name="privacykit_activity_walk_summary">About 5 km/h around a small loop</string>
+    <!-- Movement choice: jogging pace -->
+    <string name="privacykit_activity_jog_title">Jogging</string>
+    <!-- Summary of the jogging choice -->
+    <string name="privacykit_activity_jog_summary">About 11 km/h around a larger loop</string>
+    <!-- Movement choice: driving pace -->
+    <string name="privacykit_activity_drive_title">Driving</string>
+    <!-- Summary of the driving choice -->
+    <string name="privacykit_activity_drive_summary">About 50 km/h around a road-sized loop</string>
+    <!-- Heading above the path choices -->
+    <string name="privacykit_activity_path_category">Path</string>
+    <!-- Path choice: go round and round -->
+    <string name="privacykit_activity_loop">Loop</string>
+    <!-- Path choice: walk the path forwards, then backwards -->
+    <string name="privacykit_activity_pingpong">Back and forth</string>
+    <!-- Path choice: walk the path once and stop at the end -->
+    <string name="privacykit_activity_once">Once, then stop</string>
+    <!-- Row that re-arms the path from its first point -->
+    <string name="privacykit_activity_restart_title">Restart path now</string>
+    <!-- Summary of the restart row -->
+    <string name="privacykit_activity_restart_summary">Start again from the first point</string>
+    <!-- Summary of the disabled Activity Simulation row: simulation needs an anchor point -->
+    <string name="privacykit_activity_needs_location">Set a location first</string>
+    <!-- Summary of the Activity Simulation row while a path is armed: pace, then path shape -->
+    <string name="privacykit_activity_summary_active"><xliff:g id="pace" example="Walking">%1$s</xliff:g>  •  <xliff:g id="path" example="Loop">%2$s</xliff:g></string>
+    <!-- Footer explaining how the simulated position advances -->
+    <string name="privacykit_activity_footer">The position is worked out from the clock each time the app asks for it, so nothing runs in the background and the walk carries on while the app is closed. It is only visible while the device is really producing fixes: with location switched off the app gets nothing, exactly as before. Changing the device clock moves the simulated position with it.</string>
+    <!-- Marks the profile of this app that was opened most recently -->
+    <string name="privacykit_profile_last_opened">Last opened</string>
+    <!-- App storage size shown on a profile row. %1$s is a size like 125 MB -->
+    <string name="privacykit_profile_app_data">App data: <xliff:g id="size" example="125 MB">%1$s</xliff:g></string>
+</resources>

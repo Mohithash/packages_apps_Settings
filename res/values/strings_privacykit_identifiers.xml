@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 BestROM
+     SPDX-License-Identifier: Apache-2.0
+
+     Strings for the PrivacyKit identifier catalog, the per-identifier rule
+     picker and the AI fingerprint explainer.
+
+     Separate from strings.xml on purpose (res/values/*.xml is merged
+     automatically) to avoid touching the shared file while other agents
+     are concurrently editing it.
+
+     Reconstructed 2026-08-19 from the r49 build: base snapshot mined from the
+     Claude Code transcripts + the 2026-08-18 uncommitted patch hunks, then every
+     name and value cross-checked against the strings decoded out of the r49
+     Settings.apk. See PrivacyKitIdentifierCatalog.kt for the same provenance.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Search box above the identifier catalog -->
+    <string name="privacykit_ids_search_hint">Search identifiers</string>
+    <string name="privacykit_ids_search_clear">Clear search</string>
+    <string name="privacykit_ids_no_results">No identifiers found</string>
+    <string name="privacykit_ids_no_results_summary">No identifier name matches your search. Try a shorter or different term.</string>
+    <string name="privacykit_ids_loading">Reading current rules…</string>
+
+    <!-- Category header accessibility + per-group counters -->
+    <string name="privacykit_ids_group_expand">Expand category</string>
+    <string name="privacykit_ids_group_collapse">Collapse category</string>
+    <!-- Example: "3 of 8 spoofed" -->
+    <string name="privacykit_group_summary_spoofed"><xliff:g id="changed" example="3">%1$d</xliff:g> of <xliff:g id="total" example="8">%2$d</xliff:g> spoofed</string>
+    <!-- Example: "2 set but not enforced" -->
+    <string name="privacykit_group_summary_pending"><xliff:g id="count" example="2">%1$d</xliff:g> set but not enforced</string>
+    <string name="privacykit_group_summary_none">Nothing changed</string>
+
+    <!-- Row summary when a Custom value is configured. Example: "Custom: SM-S911B" -->
+    <string name="privacykit_summary_custom">Custom: <xliff:g id="value" example="SM-S911B">%1$s</xliff:g></string>
+
+    <!-- Honest "no hook yet" state -->
+    <string name="privacykit_not_enforced_badge">Not enforced yet</string>
+    <string name="privacykit_not_enforced_info_cd">Why is this not enforced?</string>
+    <string name="privacykit_not_enforced_info_title">Not enforced yet</string>
+    <string name="privacykit_not_enforced_info_body">Your rule for this identifier is saved and will be kept, but this build has no framework hook for it yet, so apps still read the real value.\n\nIt is listed here so the catalog stays honest about what PrivacyKit does and does not cover. It will start working as soon as the matching hook lands.</string>
+    <string name="privacykit_ids_footer">Rules apply to the active profile of this app.</string>
+
+    <!-- Rule picker: rule names + what each one actually does -->
+    <string name="privacykit_rule_section_title">Spoofing rule</string>
+    <string name="privacykit_rule_real">Real</string>
+    <string name="privacykit_rule_real_summary">Pass through the real value from this device. Nothing is changed.</string>
+    <string name="privacykit_rule_static">Static</string>
+    <string name="privacykit_rule_static_summary">The same fake value every time, stable across app launches and reboots.</string>
+    <string name="privacykit_rule_per_launch">Random per launch</string>
+    <string name="privacykit_rule_per_launch_summary">A freshly generated value each time the app reads it.</string>
+    <string name="privacykit_rule_daily">Random daily</string>
+    <string name="privacykit_rule_daily_summary">A new value each day, stable for the rest of that day.</string>
+    <string name="privacykit_rule_custom">Custom value</string>
+    <string name="privacykit_rule_custom_summary">Use exactly the value you type below.</string>
+    <string name="privacykit_rule_empty">Empty / restricted</string>
+    <string name="privacykit_rule_empty_summary">Report an empty value, as if the identifier were unavailable.</string>
+
+    <!-- Custom value editor -->
+    <string name="privacykit_custom_section_title">Custom value</string>
+    <string name="privacykit_custom_save">Save</string>
+    <string name="privacykit_custom_saving">Saving…</string>
+    <string name="privacykit_custom_saved">Saved</string>
+    <string name="privacykit_custom_empty_hint">Leave this empty to fall back to the real value.</string>
+
+    <!-- AI fingerprint explainer screen -->
+    <string name="privacykit_explainer_title">Fingerprint Explainer</string>
+    <string name="privacykit_explainer_loading">Checking your identifiers for consistency…</string>
+    <string name="privacykit_explainer_empty_title">Nothing to check yet</string>
+    <string name="privacykit_explainer_empty_summary">Configure some identifiers first, then come back here to check them for consistency.</string>
+    <string name="privacykit_explainer_error_title">AI explanation unavailable</string>
+    <string name="privacykit_explainer_error_summary">The request to your AI provider did not return an answer. Check the endpoint, model and API key in the Settings tab, then try again.</string>
+    <string name="privacykit_explainer_retry">Try again</string>
+    <string name="privacykit_explainer_card_title">Coherence report</string>
+    <!-- Example: "Based on 12 configured identifiers" -->
+    <string name="privacykit_explainer_card_summary">Based on <xliff:g id="count" example="12">%1$d</xliff:g> configured identifiers</string>
+    <string name="privacykit_explainer_disclaimer">Generated by the AI provider configured in the Settings tab. Treat it as a hint, not a guarantee.</string>
+
+    <!-- One-tap "generate an identity with AI, then start the app under it" action
+         in the per-app screen header. -->
+    <string name="privacykit_ai_quick_profile">Generate identity with AI and launch</string>
+    <string name="privacykit_ai_not_configured">Set up an AI provider first (PrivacyKit \u2192 Settings \u2192 AI providers)</string>
+    <string name="privacykit_ai_launching">Applied \u201c%1$s\u201d \u2013 launching\u2026</string>
+    <string name="privacykit_ai_no_launcher">%1$s has no launchable screen; identity applied anyway</string>
+    <!-- Profile hub: pin a launcher shortcut that activates this profile then starts the app. -->
+    <string name="privacykit_hub_add_shortcut">Add to launcher</string>
+    <string name="privacykit_hub_shortcut_failed">This launcher can\'t pin shortcuts</string>
+</resources>
