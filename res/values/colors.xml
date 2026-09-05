@@ -328,4 +328,6 @@
     <color name="sc_materialColorSurfaceContainer">@android:color/system_surface_container_light</color>
     <color name="sc_materialColorOutline">@android:color/system_outline_light</color>
     <color name="sc_materialColorOutlineVariant">@android:color/system_outline_variant_light</color>
+    <!-- BestROM brand mark: grey-600 on light, grey-300 on dark -->
+    <color name="bestrom_mark">#4B5563</color>
 </resources>
