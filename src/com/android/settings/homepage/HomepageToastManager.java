@@ -33,7 +33,7 @@ import java.util.Random;
 
 public class HomepageToastManager {
 
-    private static final String KEY_VOLTAGE_BUILD_STATUS_PROP = "ro.voltage.build.status";
+    private static final String KEY_VOLTAGE_BUILD_STATUS_PROP = "ro.bestrom.build.status";
     private static final String KEY_CUSTOM_TEXT = "homepage_toast_custom_text";
     private static final long REFRESH_INTERVAL_MS = 30000;
 

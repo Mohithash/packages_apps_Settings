@@ -189,8 +189,8 @@ class VoltageMaintainerPreference :
     }
 
     companion object {
-        const val BUILD_STATUS_PROPERTY: String = "ro.voltage.build.status"
-        const val GPG_KEY_PROPERTY: String = "ro.voltage.maintainer.gpg_key"
-        const val GPG_UID_PROPERTY: String = "ro.voltage.maintainer.gpg_uid"
+        const val BUILD_STATUS_PROPERTY: String = "ro.bestrom.build.status"
+        const val GPG_KEY_PROPERTY: String = "ro.bestrom.maintainer.gpg_key"
+        const val GPG_UID_PROPERTY: String = "ro.bestrom.maintainer.gpg_uid"
     }
 }
