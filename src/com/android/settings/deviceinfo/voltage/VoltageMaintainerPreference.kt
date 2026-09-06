@@ -17,6 +17,8 @@
 package com.android.settings.deviceinfo.voltage
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.graphics.Typeface
 import android.graphics.drawable.Animatable
 import android.os.SystemProperties
@@ -50,41 +52,14 @@ class VoltageMaintainerPreference :
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
-
         val context = preference.context
         val statusPreference = preference as? MaintainerStatusPreference
         preference.isIconSpaceReserved = false
-
-        val buildStatus = getBuildStatus(context)
-        val maintainerLine =
-            if (buildStatus != context.getString(R.string.unknown)) {
-                "$buildStatus by ${context.getString(R.string.voltage_maintainer)}"
-            } else {
-                context.getString(R.string.unknown)
-            }
-
-        if (!buildStatus.equals("OFFICIAL", ignoreCase = true)) {
-            statusPreference?.setStatusIcon(0, animate = false)
-            preference.summary = maintainerLine
-            preference.isCopyingEnabled = true
-            return
-        }
-
-        val gpgKey = SystemProperties.get(GPG_KEY_PROPERTY, "")
-        val gpgUid = SystemProperties.get(GPG_UID_PROPERTY, "")
-
-        if (!TextUtils.isEmpty(gpgKey) && !TextUtils.isEmpty(gpgUid)) {
-            statusPreference?.setStatusIcon(R.drawable.ic_gpg_verified_anim, animate = true)
-            preference.summary = buildMergedSummary(preference, maintainerLine, gpgKey, gpgUid)
-            preference.isCopyingEnabled = true
-        } else {
-            statusPreference?.setStatusIcon(R.drawable.ic_gpg_tampered_anim, animate = true)
-            preference.summary =
-                SpannableStringBuilder(maintainerLine)
-                    .append("\n")
-                    .append(context.getString(R.string.voltage_tampered_build_summary))
-            preference.isCopyingEnabled = false
-        }
+        statusPreference?.setStatusIcon(0, animate = false)
+        preference.summary =
+            "${context.getString(R.string.bestrom_build_status)} by ${context.getString(R.string.voltage_maintainer)}"
+        preference.isCopyingEnabled = false
+        preference.intent = Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.bestrom_maintainer_url)))
     }
 
     private fun getBuildStatus(context: Context): String {

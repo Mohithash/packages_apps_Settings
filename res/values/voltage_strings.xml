@@ -12,7 +12,7 @@
     <!-- VoltageOS maintainer -->
     <string name="voltage_maintainer_title">Build status</string>
     <string name="maintainer">Maintainer</string>
-    <string name="voltage_maintainer">Unofficial Maintainer</string>
+    <string name="voltage_maintainer">Sal</string>
 
     <!-- VoltageOS GPG key -->
     <string name="voltage_gpg_key_title">Verified GPG Key</string>
@@ -75,8 +75,8 @@
     <string name="swipe_to_screenshot_gesture_summary">Swipe three fingers to take screenshot</string>
 
     <!--Powerhub-->
-    <string name="powerhub_title">Powerhub</string>
-    <string name="powerhub_summary">The Power you need</string>
+    <string name="powerhub_title">Custom Tweaks</string>
+    <string name="powerhub_summary">Tweaks and customization</string>
 
     <!-- Black theme for dark mode -->
     <string name="berry_black_theme_title">Pure black</string>
@@ -694,4 +694,6 @@ When the screen is off, the torch can be enabled with one of the following key c
     <string name="multi_audio_focus_title">Multi audio focus</string>
     <string name="multi_audio_focus_summary">Allow multiple apps to play audio simultaneously</string>
 
+    <string name="bestrom_build_status">Official</string>
+    <string name="bestrom_maintainer_url" translatable="false">https://github.com/Mohithash</string>
 </resources>
