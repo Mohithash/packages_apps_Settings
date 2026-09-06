@@ -33,10 +33,10 @@ class ScreenshotSoundPreference :
 
     override fun tags(context: Context) = arrayOf(KEY_SCREENSHOT_SOUND)
 
-    // Wrap the System store so an unset value reports ON, matching the
-    // getIntForUser(..., 1, ...) default used by ScreenshotController.
+    // BestROM: wrap the System store so an unset value reports OFF, matching the
+    // getIntForUser(..., 0, ...) default used by ScreenshotController.
     override fun storage(context: Context): KeyValueStore =
-        DefaultOnStore(SettingsSystemStore.get(context))
+        DefaultOffStore(SettingsSystemStore.get(context))
 
     override fun getReadPermissions(context: Context) = SettingsSystemStore.getReadPermissions()
 
@@ -53,10 +53,10 @@ class ScreenshotSoundPreference :
 
     /**
      * Delegates every call to [delegate] via Kotlin interface delegation, but
-     * returns true for an unset boolean so the switch defaults to ON before the
+     * returns false for an unset boolean so the switch defaults to OFF before the
      * user has ever written the setting.
      */
-    private class DefaultOnStore(
+    private class DefaultOffStore(
         private val delegate: KeyValueStore,
     ) : KeyValueStore by delegate {
 
@@ -65,7 +65,7 @@ class ScreenshotSoundPreference :
         @Suppress("UNCHECKED_CAST")
         override fun <T : Any> getValue(key: String, valueType: Class<T>): T? {
             delegate.getValue(key, valueType)?.let { return it }
-            return if (valueType == java.lang.Boolean::class.java) true as T else null
+            return if (valueType == java.lang.Boolean::class.java) false as T else null
         }
     }
 }

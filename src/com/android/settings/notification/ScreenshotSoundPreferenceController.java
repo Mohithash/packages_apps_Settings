@@ -28,6 +28,7 @@ public class ScreenshotSoundPreferenceController extends SettingPrefController {
     public ScreenshotSoundPreferenceController(Context context, SettingsPreferenceFragment parent,
             Lifecycle lifecycle) {
         super(context, parent, lifecycle);
-        mPreference = new SettingPref(TYPE_SYSTEM, KEY_SCREENSHOT_SOUND, KEY_SCREENSHOT_SOUND, DEFAULT_ON);
+        // BestROM: screenshot shutter sound ships off (0 = default off).
+        mPreference = new SettingPref(TYPE_SYSTEM, KEY_SCREENSHOT_SOUND, KEY_SCREENSHOT_SOUND, 0);
     }
 }
