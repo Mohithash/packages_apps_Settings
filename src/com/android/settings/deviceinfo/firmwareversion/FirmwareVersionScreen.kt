@@ -74,7 +74,6 @@ open class FirmwareVersionScreen : PreferenceScreenMixin, PreferenceSummaryProvi
         preferenceHierarchy(context) {
             +VoltageLogoPreference()
             +FirmwareVersionDetailPreference()
-            +VoltageVersionPreference()
             +AboutDeviceNamePreference()
             +VoltageMaintainerPreference()
             +SecurityPatchLevelPreference()
