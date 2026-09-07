@@ -19,15 +19,8 @@ package com.android.settings.deviceinfo.voltage
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.graphics.Typeface
 import android.graphics.drawable.Animatable
 import android.os.SystemProperties
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.TextUtils
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import androidx.preference.Preference
@@ -56,75 +49,22 @@ class VoltageMaintainerPreference :
         val statusPreference = preference as? MaintainerStatusPreference
         preference.isIconSpaceReserved = false
         statusPreference?.setStatusIcon(0, animate = false)
+        // ro.bestrom.build.status is the literal OFFICIAL/UNOFFICIAL that
+        // vendor/voltage/config/version.mk emits from VOLTAGE_BUILD_TYPE. Map it through
+        // string resources rather than case-folding the property: .lowercase() would hit
+        // the Turkish dotless-i, and the raw value is all-caps.
+        val buildStatus = SystemProperties.get(BUILD_STATUS_PROPERTY, "")
+        val statusText = when {
+            buildStatus.equals("OFFICIAL", ignoreCase = true) ->
+                context.getString(R.string.bestrom_build_status_official)
+            buildStatus.equals("UNOFFICIAL", ignoreCase = true) ->
+                context.getString(R.string.bestrom_build_status_unofficial)
+            else -> context.getString(R.string.unknown)
+        }
         preference.summary =
-            "${context.getString(R.string.bestrom_build_status)} by ${context.getString(R.string.voltage_maintainer)}"
+            "$statusText by ${context.getString(R.string.voltage_maintainer)}"
         preference.isCopyingEnabled = false
         preference.intent = Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.bestrom_maintainer_url)))
-    }
-
-    private fun getBuildStatus(context: Context): String {
-        val buildStatus = SystemProperties.get(BUILD_STATUS_PROPERTY, "")
-        if (buildStatus.equals("OFFICIAL", ignoreCase = true) ||
-            buildStatus.equals("UNOFFICIAL", ignoreCase = true)) {
-            return buildStatus
-        }
-        return context.getString(R.string.unknown)
-    }
-
-    private fun buildMergedSummary(
-        preference: Preference,
-        maintainerLine: CharSequence,
-        gpgKey: String,
-        gpgUid: String,
-    ): CharSequence {
-        val summary = SpannableStringBuilder(maintainerLine)
-        summary.append("\n")
-        if (!preference.context.resources.getBoolean(R.bool.config_show_gpg_uid)) {
-            summary.append(gpgKey)
-            return summary
-        }
-        val uid = decodeHexUid(gpgUid)
-        val accent = resolveColor(preference, android.R.attr.colorAccent)
-        val start = summary.length
-        summary.append(uid)
-        summary.setSpan(
-            ForegroundColorSpan(accent),
-            start,
-            summary.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,
-        )
-        summary.setSpan(
-            StyleSpan(Typeface.BOLD),
-            start,
-            summary.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE,
-        )
-        summary.append("\n")
-        summary.append(gpgKey)
-        return summary
-    }
-
-    private fun decodeHexUid(hexUid: String): String =
-        try {
-            val builder = StringBuilder()
-            var i = 0
-            while (i < hexUid.length) {
-                builder.append(hexUid.substring(i, i + 2).toInt(16).toChar())
-                i += 2
-            }
-            builder.toString().trim()
-        } catch (e: Exception) {
-            hexUid
-        }
-
-    private fun resolveColor(preference: Preference, attr: Int): Int {
-        val value = TypedValue()
-        preference.context.theme.resolveAttribute(attr, value, true)
-        return if (value.resourceId != 0) {
-            preference.context.getColor(value.resourceId)
-        } else {
-            value.data
-        }
     }
 
     private class MaintainerStatusPreference(context: Context) : Preference(context) {
@@ -165,7 +105,5 @@ class VoltageMaintainerPreference :
 
     companion object {
         const val BUILD_STATUS_PROPERTY: String = "ro.bestrom.build.status"
-        const val GPG_KEY_PROPERTY: String = "ro.bestrom.maintainer.gpg_key"
-        const val GPG_UID_PROPERTY: String = "ro.bestrom.maintainer.gpg_uid"
     }
 }
