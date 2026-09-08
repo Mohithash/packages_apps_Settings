@@ -700,4 +700,8 @@ When the screen is off, the torch can be enabled with one of the following key c
 
     <!-- Homepage header eyebrow. Upper casing comes from the text appearance. -->
     <string name="bestrom_homepage_eyebrow" translatable="false">BESTROM %1$s</string>
+    <!-- Homepage device card second line: ROM version and device codename. -->
+    <string name="bestrom_device_card_summary" translatable="false">BestROM %1$s \u00b7 %2$s</string>
+    <!-- Homepage device card content description, read aloud: device name, then the second line. -->
+    <string name="bestrom_device_card_content_description">%1$s, %2$s</string>
 </resources>
