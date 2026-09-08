@@ -64,6 +64,11 @@ public class HomepagePreference extends Preference implements
         return mHelper;
     }
 
+    @Override
+    public void notifyLayoutChanged() {
+        notifyChanged();
+    }
+
     /**
      * Set the alert count to show for this Preference.
      */

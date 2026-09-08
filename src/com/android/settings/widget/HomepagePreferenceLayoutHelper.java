@@ -16,6 +16,8 @@
 
 package com.android.settings.widget;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,10 +26,16 @@ import androidx.preference.PreferenceViewHolder;
 
 import com.android.settings.R;
 import com.android.settings.flags.Flags;
+import com.android.settings.homepage.BestromGlyphs;
 import com.android.settingslib.widget.SettingsThemeHelper;
+
+import java.util.Locale;
 
 /** Helper for homepage preference to manage layout. */
 public class HomepagePreferenceLayoutHelper {
+
+    private final Preference mPreference;
+    private final boolean mBestromStyle;
 
     private View mIcon;
     private View mText;
@@ -35,20 +43,38 @@ public class HomepagePreferenceLayoutHelper {
     private View mAlertUnnumbered;
     private View mAlertNumberedFrame;
     private TextView mAlertNumberText;
+    private TextView mGlyph;
+    private TextView mTrailingValue;
     private boolean mIconVisible = true;
     private int mIconPaddingStart = -1;
     private int mTextPaddingStart = -1;
     private int mAlertValue = -1;
+    private CharSequence mTrailingText;
+    private CharSequence mGlyphSource;
+    private Locale mGlyphLocale;
+    private String mGlyphText = "";
 
     /** The interface for managing preference layouts on homepage */
     public interface HomepagePreferenceLayout {
         /** Returns a {@link HomepagePreferenceLayoutHelper}  */
         HomepagePreferenceLayoutHelper getHelper();
+
+        /**
+         * Asks the preference to rebind its holder. {@code Preference.notifyChanged} is protected,
+         * so the preference has to make it reachable from the helper.
+         */
+        void notifyLayoutChanged();
     }
 
     public HomepagePreferenceLayoutHelper(Preference preference) {
-        preference.setLayoutResource(
-                SettingsThemeHelper.isExpressiveTheme(preference.getContext())
+        mPreference = preference;
+        final Context context = preference.getContext();
+        final boolean expressive = SettingsThemeHelper.isExpressiveTheme(context);
+        mBestromStyle = expressive
+                && context.getResources().getBoolean(R.bool.config_bestrom_homepage_style);
+        preference.setLayoutResource(mBestromStyle
+                ? R.layout.bestrom_homepage_preference
+                : expressive
                         ? R.layout.homepage_preference_expressive
                         : R.layout.homepage_preference);
     }
@@ -76,6 +102,25 @@ public class HomepagePreferenceLayoutHelper {
         if (mText != null && paddingStart >= 0) {
             mText.setPaddingRelative(paddingStart, mText.getPaddingTop(), mText.getPaddingEnd(),
                     mText.getPaddingBottom());
+        }
+    }
+
+    /**
+     * Stores the short value shown at the end of a homepage row and asks for a rebind.
+     *
+     * <p>Deliberately writes no view: the helper belongs to a preference but the views belong to a
+     * recycled holder, so a callback that fires after the holder has been rebound to another row
+     * would write into the wrong row. {@link Preference#notifyChanged()} is a no-op before the
+     * preference is attached, so a caller that sets the value while building the screen still pays
+     * nothing.
+     */
+    public void setTrailingValue(CharSequence value) {
+        if (TextUtils.equals(value, mTrailingText)) {
+            return;
+        }
+        mTrailingText = value;
+        if (mPreference instanceof HomepagePreferenceLayout) {
+            ((HomepagePreferenceLayout) mPreference).notifyLayoutChanged();
         }
     }
 
@@ -111,9 +156,52 @@ public class HomepagePreferenceLayoutHelper {
         mAlertUnnumbered = holder.findViewById(R.id.alert_unnumbered);
         mAlertNumberedFrame = holder.findViewById(R.id.alert_numbered_frame);
         mAlertNumberText = (TextView) holder.findViewById(R.id.alert_number_fg);
+        if (mBestromStyle) {
+            mGlyph = (TextView) holder.findViewById(R.id.bestrom_homepage_glyph);
+            mTrailingValue = (TextView) holder.findViewById(R.id.bestrom_trailing_value);
+            bindGlyph();
+            bindTrailingValue();
+        }
+        // The forked row has no icon image view, so androidx hides icon_frame on every bind and
+        // this call is the only thing that brings the glyph back. Do not reorder it.
         setIconVisible(mIconVisible);
         setIconPaddingStart(mIconPaddingStart);
         setTextPaddingStart(mTextPaddingStart);
         setAlert(mAlertValue);
+    }
+
+    private void bindGlyph() {
+        if (mGlyph == null) {
+            return;
+        }
+        final CharSequence title = mPreference.getTitle();
+        Locale locale = mGlyph.getResources().getConfiguration().getLocales().get(0);
+        if (locale == null) {
+            locale = Locale.getDefault();
+        }
+        if (!TextUtils.equals(title, mGlyphSource) || !locale.equals(mGlyphLocale)) {
+            mGlyphText = BestromGlyphs.firstGrapheme(title, locale);
+            mGlyphSource = title;
+            mGlyphLocale = locale;
+        }
+        mGlyph.setTypeface(BestromTypefaces.doto900());
+        if (!TextUtils.equals(mGlyph.getText(), mGlyphText)) {
+            mGlyph.setText(mGlyphText);
+        }
+    }
+
+    private void bindTrailingValue() {
+        if (mTrailingValue == null) {
+            return;
+        }
+        if (TextUtils.isEmpty(mTrailingText)) {
+            mTrailingValue.setVisibility(View.GONE);
+            return;
+        }
+        mTrailingValue.setTypeface(BestromTypefaces.doto700());
+        if (!TextUtils.equals(mTrailingValue.getText(), mTrailingText)) {
+            mTrailingValue.setText(mTrailingText);
+        }
+        mTrailingValue.setVisibility(View.VISIBLE);
     }
 }

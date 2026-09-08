@@ -60,4 +60,9 @@ public class RestrictedHomepagePreference extends RestrictedTopLevelPreference i
     public HomepagePreferenceLayoutHelper getHelper() {
         return mHelper;
     }
+
+    @Override
+    public void notifyLayoutChanged() {
+        notifyChanged();
+    }
 }

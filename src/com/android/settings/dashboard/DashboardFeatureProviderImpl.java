@@ -142,12 +142,15 @@ public class DashboardFeatureProviderImpl implements DashboardFeatureProvider {
     private final MetricsFeatureProvider mMetricsFeatureProvider;
     private final CategoryManager mCategoryManager;
     private final PackageManager mPackageManager;
+    private final boolean mBestromHomepageStyle;
 
     public DashboardFeatureProviderImpl(Context context) {
         mContext = context.getApplicationContext();
         mCategoryManager = CategoryManager.get(context);
         mMetricsFeatureProvider = FeatureFactory.getFeatureFactory().getMetricsFeatureProvider();
         mPackageManager = context.getPackageManager();
+        mBestromHomepageStyle = mContext.getResources()
+                .getBoolean(R.bool.config_bestrom_homepage_style);
     }
 
     @Override
@@ -530,7 +533,12 @@ public class DashboardFeatureProviderImpl implements DashboardFeatureProvider {
             // Handle homepage icons
             if (TextUtils.equals(tile.getCategory(), CategoryKey.CATEGORY_HOMEPAGE)) {
                 if (SettingsThemeHelper.isExpressiveTheme(mContext)) {
-                    preference.setIcon(getExpressiveHomepageIcon(tile, iconDrawable, iconPackage));
+                    // The BestROM row draws a letter glyph and has no icon view, so the tile icon
+                    // would be loaded and thrown away.
+                    if (!mBestromHomepageStyle) {
+                        preference.setIcon(
+                                getExpressiveHomepageIcon(tile, iconDrawable, iconPackage));
+                    }
                     return;
                 }
                 // Skip tinting and Adaptive Icon transformation for homepage account type raw icons
