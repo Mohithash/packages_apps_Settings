@@ -178,6 +178,7 @@ abstract class AbstractDeviceStateAppFunctionService : AppFunctionService() {
                         "the device is locked.",
                 )
             )
+            return
         }
 
         backgroundScope.launch(NonCancellable) {
