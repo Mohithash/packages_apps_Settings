@@ -25,11 +25,11 @@
         android:id="@+id/search_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="72dp"
+        android:minHeight="@dimen/bestrom_search_bar_height"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:paddingStart="@dimen/bestrom_search_bar_padding"
+        android:paddingEnd="@dimen/bestrom_search_bar_padding"
         android:focusedByDefault="true"
         android:background="@drawable/search_bar_selected_background">
 
@@ -38,13 +38,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:importantForAccessibility="no"
-            android:src="@drawable/ic_homepage_search" />
+            android:src="@drawable/bestrom_search_dot" />
         <TextView
             android:id="@+id/search_bar_title"
-            style="@style/TextAppearance.SearchBar"
+            style="@style/TextAppearance.SearchBar.Bestrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/bestrom_search_bar_gap"
             android:paddingEnd="8dp"
             android:text="@string/homepage_search"/>
     </LinearLayout>
