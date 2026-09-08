@@ -28,6 +28,7 @@ import androidx.preference.PreferenceScreen;
 import com.android.settings.R;
 import com.android.settings.core.BasePreferenceController;
 import com.android.settings.overlay.FeatureFactory;
+import com.android.settings.widget.HomepagePreferenceLayoutHelper;
 import com.android.settingslib.Utils;
 import com.android.settingslib.core.lifecycle.LifecycleObserver;
 import com.android.settingslib.core.lifecycle.events.OnStart;
@@ -143,12 +144,24 @@ public class TopLevelBatteryPreferenceController extends BasePreferenceControlle
                                 if (!triggerBatteryStatusUpdate) {
                                     mBatteryStatusLabel = null; // will generateLabel()
                                 }
+                                setTrailing(info);
                                 mPreference.setSummary(
                                         mBatteryStatusLabel == null
                                                 ? generateLabel(info)
                                                 : mBatteryStatusLabel);
                             });
                 });
+    }
+
+    /** Puts the battery percentage in the homepage row's trailing slot. */
+    private void setTrailing(BatteryInfo info) {
+        if (info == null || info.batteryPercentString == null) {
+            return;
+        }
+        if (mPreference instanceof HomepagePreferenceLayoutHelper.HomepagePreferenceLayout) {
+            ((HomepagePreferenceLayoutHelper.HomepagePreferenceLayout) mPreference).getHelper()
+                    .setTrailingValue(info.batteryPercentString);
+        }
     }
 
     private CharSequence generateLabel(BatteryInfo info) {
@@ -204,6 +217,7 @@ public class TopLevelBatteryPreferenceController extends BasePreferenceControlle
         // Do not triggerBatteryStatusUpdate() here to cause infinite loop
         final CharSequence summary = getSummary(false /* batteryStatusUpdate */);
         if (summary != null) {
+            setTrailing(info);
             mPreference.setSummary(summary);
         }
         Log.d(TAG, "updateBatteryStatus: " + label + " summary: " + summary);

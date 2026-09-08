@@ -24,6 +24,7 @@ import android.app.settings.SettingsEnums;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.provider.SearchIndexableResource;
 import android.text.TextUtils;
 import android.util.Log;
@@ -336,6 +337,18 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
         }
 
         return new RoundCornerPreferenceAdapter(preferenceScreen);
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
+        final Preference powerhub = findPreference("top_level_powerhub");
+        if (powerhub instanceof HomepagePreferenceLayout) {
+            final String version = SystemProperties.get("ro.bestrom.version", "");
+            final int dash = version.indexOf('-');
+            ((HomepagePreferenceLayout) powerhub).getHelper()
+                    .setTrailingValue(dash > 0 ? version.substring(0, dash) : version);
+        }
     }
 
     @Override

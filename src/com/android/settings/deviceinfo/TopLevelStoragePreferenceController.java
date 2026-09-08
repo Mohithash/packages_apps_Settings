@@ -30,6 +30,7 @@ import com.android.settings.core.BasePreferenceController;
 import com.android.settings.dashboard.profileselector.ProfileSelectFragment.ProfileType;
 import com.android.settings.deviceinfo.storage.StorageCacheHelper;
 import com.android.settings.flags.Flags;
+import com.android.settings.widget.HomepagePreferenceLayoutHelper;
 import com.android.settingslib.deviceinfo.PrivateStorageInfo;
 import com.android.settingslib.deviceinfo.StorageManagerVolumeProvider;
 import com.android.settingslib.utils.ThreadUtils;
@@ -70,7 +71,9 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
         long cachedUsedSize = storageCacheHelper.retrieveUsedSize();
         long cachedTotalSize = storageCacheHelper.retrieveCachedSize().totalSize;
         if (cachedUsedSize != 0 && cachedTotalSize != 0) {
-            preference.setSummary(getSummary(cachedUsedSize, cachedTotalSize));
+            final String percentage = formatPercentage(cachedUsedSize, cachedTotalSize);
+            setTrailing(preference, percentage);
+            preference.setSummary(getSummary(percentage, cachedUsedSize, cachedTotalSize));
         }
 
         return ThreadUtils.postOnBackgroundThread(() -> {
@@ -80,10 +83,20 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
             long usedBytes = info.totalBytes - info.freeBytes;
             storageCacheHelper.cacheUsedSize(usedBytes);
             ThreadUtils.postOnMainThread(() -> {
-                preference.setSummary(
-                        getSummary(usedBytes, info.totalBytes));
+                final String percentage = formatPercentage(usedBytes, info.totalBytes);
+                setTrailing(preference, percentage);
+                preference.setSummary(getSummary(percentage, usedBytes, info.totalBytes));
             });
         });
+    }
+
+    /** Puts the used percentage in the homepage row's trailing slot. */
+    private void setTrailing(Preference preference, String percentage) {
+        if (!(preference instanceof HomepagePreferenceLayoutHelper.HomepagePreferenceLayout)) {
+            return;
+        }
+        ((HomepagePreferenceLayoutHelper.HomepagePreferenceLayout) preference).getHelper()
+                .setTrailingValue(percentage);
     }
 
     @VisibleForTesting
@@ -91,7 +104,11 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
         return mStorageManagerVolumeProvider;
     }
 
-    private String getSummary(long usedBytes, long totalBytes) {
+    /**
+     * Formats the used percentage. The homepage row's trailing value and the summary show the same
+     * number, so it is formatted once and handed to both.
+     */
+    private String formatPercentage(long usedBytes, long totalBytes) {
         if (Flags.storageSummaryPercentageAlignment()) {
             NumberFormat numberFormat = NumberFormat.getIntegerInstance();
             int percentValue = totalBytes == 0L ? 0
@@ -100,19 +117,17 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
 
             // Wrap digits in the dedicated percentage formatting resource
             // This allows the L10n team to control sign placement visually.
-            String formattedPercentage = mContext.getString(R.string.storage_percentage_format,
-                    localizedDigits);
-            String fileSize = Formatter.formatFileSize(mContext, totalBytes - usedBytes);
-
-            return mContext.getString(R.string.storage_toplevel_summary,
-                    formattedPercentage, fileSize);
+            return mContext.getString(R.string.storage_percentage_format, localizedDigits);
         } else {
             NumberFormat percentageFormat = NumberFormat.getPercentInstance();
 
-            return mContext.getString(R.string.storage_toplevel_summary,
-                    totalBytes == 0L ? "0"
-                            : percentageFormat.format(((double) usedBytes) / totalBytes),
-                    Formatter.formatFileSize(mContext, totalBytes - usedBytes));
+            return totalBytes == 0L ? "0"
+                    : percentageFormat.format(((double) usedBytes) / totalBytes);
         }
+    }
+
+    private String getSummary(String percentage, long usedBytes, long totalBytes) {
+        return mContext.getString(R.string.storage_toplevel_summary, percentage,
+                Formatter.formatFileSize(mContext, totalBytes - usedBytes));
     }
 }
