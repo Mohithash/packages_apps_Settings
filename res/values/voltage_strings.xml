@@ -697,4 +697,7 @@ When the screen is off, the torch can be enabled with one of the following key c
     <string name="bestrom_build_status_official">Official</string>
     <string name="bestrom_build_status_unofficial">Unofficial</string>
     <string name="bestrom_maintainer_url" translatable="false">https://github.com/Mohithash</string>
+
+    <!-- Homepage header eyebrow. Upper casing comes from the text appearance. -->
+    <string name="bestrom_homepage_eyebrow" translatable="false">BESTROM %1$s</string>
 </resources>
