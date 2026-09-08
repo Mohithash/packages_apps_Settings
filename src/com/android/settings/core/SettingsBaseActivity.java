@@ -22,6 +22,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.SystemProperties;
 import android.text.TextUtils;
@@ -138,6 +139,14 @@ public class SettingsBaseActivity extends FragmentActivity implements CategoryHa
                     findViewById(com.android.settingslib.collapsingtoolbar.R.id.collapsing_toolbar);
             mAppBarLayout = findViewById(R.id.app_bar);
             getToolbarDelegate().initCollapsingToolbar(mCollapsingToolbarLayout, mAppBarLayout);
+            if (mCollapsingToolbarLayout != null
+                    && getResources().getBoolean(R.bool.config_bestrom_homepage_style)) {
+                // The collapsing toolbar style names a font family directly, so the ROM headline
+                // family cannot reach it from a theme.
+                final Typeface typeface = Typeface.create("space-grotesk-bold", Typeface.NORMAL);
+                mCollapsingToolbarLayout.setExpandedTitleTypeface(typeface);
+                mCollapsingToolbarLayout.setCollapsedTitleTypeface(typeface);
+            }
         } else {
             super.setContentView(R.layout.settings_base_layout);
         }

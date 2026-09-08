@@ -25,6 +25,9 @@
         <item name="seekBarPreferenceStyle">@style/SettingsSeekBarPreference</item>
         <item name="twoStateButtonPreferenceStyle">@style/TwoStateButtonPreference</item>
         <item name="preferenceFragmentCompatStyle">@style/SettingsPreferenceFragmentStyle</item>
+        <item name="expressivePreferenceTheme">@style/BestromExpressivePreferenceTheme</item>
+        <item name="expressiveTwoTargetPreferenceTheme">@style/BestromExpressiveTwoTargetPreferenceTheme</item>
+        <item name="expressiveSelectorWithWidgetPreferenceTheme">@style/BestromExpressiveSelectorWithWidgetPreferenceTheme</item>
     </style>
 
     <style name="SyncSwitchPreference.Expressive" parent="@style/SettingsLibPreference.SwitchPreferenceCompat.Expressive">
