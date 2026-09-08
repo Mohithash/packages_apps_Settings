@@ -42,6 +42,8 @@ public class RoundCornerPreferenceAdapter extends PreferenceGroupAdapter {
 
     private final PreferenceGroup mPreferenceGroup;
 
+    protected final boolean mBestromStyle;
+
     private List<Integer> mRoundCornerMappingList;
 
     private final Handler mHandler;
@@ -56,6 +58,9 @@ public class RoundCornerPreferenceAdapter extends PreferenceGroupAdapter {
     public RoundCornerPreferenceAdapter(@NonNull PreferenceGroup preferenceGroup) {
         super(preferenceGroup);
         mPreferenceGroup = preferenceGroup;
+        mBestromStyle = SettingsThemeHelper.isExpressiveTheme(preferenceGroup.getContext())
+                && preferenceGroup.getContext().getResources()
+                        .getBoolean(com.android.settings.R.bool.config_bestrom_homepage_style);
         mHandler = new Handler(Looper.getMainLooper());
         updatePreferences();
     }
@@ -78,6 +83,13 @@ public class RoundCornerPreferenceAdapter extends PreferenceGroupAdapter {
 
         if ((CornerType & ROUND_CORNER_CENTER) == 0) {
             return 0;
+        }
+
+        if (mBestromStyle) {
+            // Every row is its own card, so there is no top, centre or bottom variant.
+            return isSelected
+                    ? com.android.settings.R.drawable.bestrom_homepage_row_background_selected
+                    : com.android.settings.R.drawable.bestrom_homepage_row_background;
         }
 
         if (((CornerType & ROUND_CORNER_TOP) != 0) && ((CornerType & ROUND_CORNER_BOTTOM) == 0)) {

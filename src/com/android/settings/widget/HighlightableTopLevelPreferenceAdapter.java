@@ -226,8 +226,9 @@ public class HighlightableTopLevelPreferenceAdapter extends RoundCornerPreferenc
             TextView title = v.findViewById(android.R.id.title);
             if (title != null) {
                 ColorStateList currentColor = title.getTextColors();
-                title.setTextAppearance(context,
-                        R.style.TextAppearance_SettingsLib_TitleMedium_Emphasized);
+                title.setTextAppearance(context, mBestromStyle
+                        ? com.android.settings.R.style.TextAppearance_Bestrom_RowTitle_Selected
+                        : R.style.TextAppearance_SettingsLib_TitleMedium_Emphasized);
                 title.setTextColor(currentColor);
             }
         }
@@ -243,7 +244,9 @@ public class HighlightableTopLevelPreferenceAdapter extends RoundCornerPreferenc
             TextView title = v.findViewById(android.R.id.title);
             if (title != null) {
                 ColorStateList currentColor = title.getTextColors();
-                title.setTextAppearance(context, R.style.TextAppearance_SettingsLib_TitleMedium);
+                title.setTextAppearance(context, mBestromStyle
+                        ? com.android.settings.R.style.TextAppearance_Bestrom_RowTitle
+                        : R.style.TextAppearance_SettingsLib_TitleMedium);
                 title.setTextColor(currentColor);
             }
         }
