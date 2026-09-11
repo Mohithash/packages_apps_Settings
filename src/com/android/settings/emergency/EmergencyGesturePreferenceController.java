@@ -53,6 +53,9 @@ public class EmergencyGesturePreferenceController extends BasePreferenceControll
         if (!isConfigEnabled) {
             return UNSUPPORTED_ON_DEVICE;
         }
+        if (!mEmergencyNumberUtils.isEmergencyGestureProviderAvailable()) {
+            return UNSUPPORTED_ON_DEVICE;
+        }
         return AVAILABLE;
     }
 

@@ -58,9 +58,14 @@ public class EmergencyGestureNumberOverridePreferenceController extends BasePref
 
     @Override
     public int getAvailabilityStatus() {
-        return mContext.getResources()
-                .getBoolean(R.bool.config_show_emergency_gesture_settings) ? AVAILABLE
-                : UNSUPPORTED_ON_DEVICE;
+        if (!mContext.getResources()
+                .getBoolean(R.bool.config_show_emergency_gesture_settings)) {
+            return UNSUPPORTED_ON_DEVICE;
+        }
+        if (!mEmergencyNumberUtils.isEmergencyGestureProviderAvailable()) {
+            return UNSUPPORTED_ON_DEVICE;
+        }
+        return AVAILABLE;
     }
 
     @Override

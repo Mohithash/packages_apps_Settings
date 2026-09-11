@@ -85,6 +85,11 @@ public class EmergencyGestureEntrypointPreferenceController extends BasePreferen
         if (!isConfigEnabled) {
             return UNSUPPORTED_ON_DEVICE;
         }
+        // Without com.android.emergency the gesture ContentProvider is gone;
+        // getSummary() would otherwise throw and kill SubSettings on resume.
+        if (!mEmergencyNumberUtils.isEmergencyGestureProviderAvailable()) {
+            return UNSUPPORTED_ON_DEVICE;
+        }
         if (!canHandleClicks()) {
             return UNSUPPORTED_ON_DEVICE;
         }

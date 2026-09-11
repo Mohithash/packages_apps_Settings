@@ -39,7 +39,8 @@ public class EmergencyGestureSoundPreferenceController extends TogglePreferenceC
 
     private static boolean isGestureAvailable(Context context) {
         return context.getResources()
-                .getBoolean(R.bool.config_show_emergency_gesture_settings);
+                .getBoolean(R.bool.config_show_emergency_gesture_settings)
+                && new EmergencyNumberUtils(context).isEmergencyGestureProviderAvailable();
     }
 
     @Override
