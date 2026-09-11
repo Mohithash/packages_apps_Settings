@@ -80,9 +80,18 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
         final Resources res = getResources();
 
         addPreferencesFromResource(R.xml.charging_control_settings);
-        getActivity().getActionBar().setTitle(R.string.charging_control_title);
+        if (getActivity() != null && getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setTitle(R.string.charging_control_title);
+        } else if (getActivity() != null) {
+            getActivity().setTitle(R.string.charging_control_title);
+        }
 
         mHealthInterface = HealthInterface.getInstance(getActivity());
+        if (!mHealthInterface.isChargingControlSupported()) {
+            // Binder can exist for Fast Charge alone; do not stay on this screen.
+            finish();
+            return;
+        }
 
         final PreferenceScreen prefSet = getPreferenceScreen();
 
@@ -144,14 +153,24 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
     }
 
     private void refreshValues() {
+        if (mHealthInterface == null) {
+            return;
+        }
         if (mChargingControlEnabledPref != null) {
             mChargingControlEnabledPref.setChecked(mHealthInterface.getEnabled());
         }
 
         if (mChargingControlModePref != null) {
-            final int chargingControlMode = mHealthInterface.getMode();
-            mChargingControlModePref.setValue(Integer.toString(chargingControlMode));
-            refreshUi();
+            int chargingControlMode = mHealthInterface.getMode();
+            // MODE_NONE is not a ListPreference entry — force a real mode.
+            if (chargingControlMode == HealthInterface.MODE_NONE) {
+                chargingControlMode = HealthInterface.MODE_AUTO;
+            }
+            final String modeValue = Integer.toString(chargingControlMode);
+            if (mChargingControlModePref.findIndexOfValue(modeValue) >= 0) {
+                mChargingControlModePref.setValue(modeValue);
+            }
+            refreshUi(chargingControlMode);
         }
 
         if (mChargingControlStartTimePref != null) {
@@ -171,12 +190,20 @@ public class ChargingControlSettings extends SettingsPreferenceFragment implemen
     }
 
     private void refreshUi() {
-        final int chargingControlMode = mHealthInterface.getMode();
-
+        if (mHealthInterface == null) {
+            return;
+        }
+        int chargingControlMode = mHealthInterface.getMode();
+        if (chargingControlMode == HealthInterface.MODE_NONE) {
+            chargingControlMode = HealthInterface.MODE_AUTO;
+        }
         refreshUi(chargingControlMode);
     }
 
     private void refreshUi(final int chargingControlMode) {
+        if (mChargingControlModePref == null) {
+            return;
+        }
         String summary = null;
         boolean isChargingControlStartTimePrefVisible = false;
         boolean isChargingControlTargetTimePrefVisible = false;
