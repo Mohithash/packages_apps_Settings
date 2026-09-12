@@ -154,10 +154,20 @@
         <item name="android:textColor">@color/bestrom_text_hint</item>
     </style>
 
-    <!-- Sub-page rows. Each style overrides the background and nothing else, so icons, heights,
-         paddings and gravity stay stock. -->
+    <!-- Sub-page rows. Background + Space Grotesk titles so every Settings
+         screen matches the homepage chrome. -->
     <style name="BestromExpressivePreferenceTheme" parent="@style/ExpressivePreferenceTheme">
         <item name="expressivePreferenceRootLayoutStyle">@style/BestromExpressivePreferenceRootLayoutStyle</item>
+        <item name="android:textAppearanceListItem">@style/TextAppearance.Bestrom.PreferenceTitle</item>
+        <item name="android:textAppearanceListItemSecondary">@style/TextAppearance.Bestrom.PreferenceSummary</item>
+    </style>
+
+    <style name="TextAppearance.Bestrom.PreferenceTitle" parent="@style/TextAppearance.Bestrom.RowTitle">
+        <item name="android:textColor">@color/bestrom_text_primary</item>
+    </style>
+
+    <style name="TextAppearance.Bestrom.PreferenceSummary" parent="@style/TextAppearance.Bestrom.RowSummary">
+        <item name="android:textColor">@color/bestrom_text_secondary</item>
     </style>
 
     <style name="BestromExpressivePreferenceRootLayoutStyle" parent="@style/ExpressivePreferenceRootLayoutStyle">

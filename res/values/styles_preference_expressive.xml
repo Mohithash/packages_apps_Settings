@@ -28,6 +28,8 @@
         <item name="expressivePreferenceTheme">@style/BestromExpressivePreferenceTheme</item>
         <item name="expressiveTwoTargetPreferenceTheme">@style/BestromExpressiveTwoTargetPreferenceTheme</item>
         <item name="expressiveSelectorWithWidgetPreferenceTheme">@style/BestromExpressiveSelectorWithWidgetPreferenceTheme</item>
+        <item name="android:textAppearanceListItem">@style/TextAppearance.Bestrom.PreferenceTitle</item>
+        <item name="android:textAppearanceListItemSecondary">@style/TextAppearance.Bestrom.PreferenceSummary</item>
     </style>
 
     <style name="SyncSwitchPreference.Expressive" parent="@style/SettingsLibPreference.SwitchPreferenceCompat.Expressive">
